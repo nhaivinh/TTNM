@@ -1,0 +1,664 @@
+body{
+    display: flex;
+    position: relative;
+    width: 1920px;
+    height: 4500px;
+    background: #EEEEEE;
+    padding: 0;
+    margin: 0;
+}
+.logo{
+    position: absolute;
+    width: 100px;
+    height: 86.77px;
+    left: 17px;
+    top: 13px;
+}
+.logo img{
+    width: 100%;
+}
+.navigator_bar{
+    position: fixed;
+    width: 1920px;
+    height: 100px;
+    left: 0px;
+    top: 0px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+
+.guide{
+    position: absolute;
+    width: 173px;
+    height: 35px;
+    left: 514px;
+    top: 35px;
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #656565;
+    }
+.aboutus{
+    position: absolute;
+    width: 200px;
+    height: 35px;
+    left: 749px;
+    top: 35px;
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #656565;
+
+}
+.collection{
+    position: absolute;
+    width: 200px;
+    height: 35px;
+    left: 1000px;
+    top: 35px;  
+    text-decoration: none;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #656565;
+}
+.logout{
+    position: absolute;
+    width: 171px;
+    height: 35px;
+    left: 1250px;
+    top: 35px;
+    text-decoration: none;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #656565;
+}
+.input_search{
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    left: 1450px;
+    top: 25px;
+}
+.button_search{
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    left: 1725px;
+    top: 25px;
+}
+.basic_info{
+    position: absolute;
+    width: 1820px;
+    height: 800px;
+    left: 55px;
+    top: 200px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.img_animal{
+    position: absolute;
+    width: 950px;
+    height: 722.45px;
+    left: 145px;
+    top: 50px;
+}
+.img_animal img{
+    width: 950px;
+    height: 533.49px;
+}
+.info_animal{
+    position: absolute;
+    width: 950px;
+    height: 722.45px;
+    top: 50px;
+    left: 950px;
+}
+.vie_animal_name{
+    position: absolute;
+    width: 147px;
+    height: 117px;
+    left: 445px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 100px;
+    line-height: 117px;
+
+    color: #000000;
+
+}
+.eng_animal_name{
+    position: absolute;
+    width: 348.57px;
+    height: 59px;
+    left: 346px;
+    top: 117px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 59px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+.status_animal_title{
+    position: absolute;
+    width: 550px;
+    height: 118px;
+    left: 220px;
+    top: 220px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 59px;
+    text-align: center;
+
+    color: #000000;
+}
+.status_animal_on{
+    color: #58FF3D;
+}
+.status_animal_off{
+    color: #FF3D3D;
+}
+.add_button{
+    position: absolute;
+    width: 450px;
+    height: 100px;
+    left: 270px;
+    top: 400px;
+
+    background: #2EC00E;
+    border-radius: 25px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 41px;
+
+    color: #FFFFFF;
+}
+.share_button{
+    position: absolute;
+    width: 450px;
+    height: 100px;
+    left: 270px;
+    top: 557px;
+
+    background: #2EC00E;
+    border-radius: 25px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 41px;
+
+    color: #FFFFFF;
+}
+.detail_info{
+    position: absolute;
+    width: 1820px;
+    height: 800px;
+    left: 55px;
+    top: 1100px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.science_info{
+    position: absolute;
+    width: 569px;
+    height: 569px;
+    left: 26px;
+    top: 50px;
+}
+.science_info_text{
+    position: absolute;
+    width: 550px;
+    height: 59px;
+    left: 26px;
+}
+.science_info_text_texts{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 59px;
+    text-transform: uppercase;
+
+    color: #000000;
+}
+.science_info_title{
+    position: absolute;
+    width: 550px;
+    height: 59px;
+    left: 45px;
+    top: 100px;
+}
+.science_info_texts{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 59px;
+    text-transform: uppercase;
+
+    color: #000000;
+}
+.science_info_title_texts{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 75px;
+    text-align: right;
+    color: #2EC00E;
+}
+.science_info_content{
+    position: absolute;
+    width: 159px;
+    height: 47px;
+    left: 350px;
+    top: 100px;
+}
+.science_info_content_texts{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 75px;
+    
+    color: #000000;
+}
+.location_info{
+    position: absolute;
+    width: 600px;
+    height: 786px;
+    left: 695px;
+    top: 50px;
+}
+.location_info_title{
+    position: absolute;
+    width: 550px;
+    height: 59px;
+}
+.location_info_title_texts{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 59px;
+    text-transform: uppercase;
+    color: #000000;
+}
+.location_info_content_text{
+    position: absolute;
+    width: 315px;
+    height: 47px;
+    top: 115px;
+}
+.location_info_context_text_texts{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 47px;
+
+    color: #2EC00E;
+}
+.location_info_content_number{
+    position: absolute;
+    width: 600px;
+    height: 47px;
+    top: 180px;
+}
+.location_info_content_number_texts{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 75px;
+    text-transform: uppercase;
+
+    color: #2EC00E;
+}
+.maintain_status{
+    position: absolute;
+    width: 550px;
+    height: 59px;
+    left: 45px;
+    top: 700px;
+}
+.maintain_status_title{
+    position: absolute;
+    width: 550px;
+    height: 59px
+}
+.maintain_status_title_texts{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 59px;
+    text-transform: uppercase;
+
+    color: #000000;
+}
+.maintain_status_content{
+    position: absolute;
+    width: 624px;
+    height: 59px;
+    left: 550px;
+}
+.maintain_status_content_texts{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 59px;
+    text-transform: uppercase;
+
+    color: #2EC00E;
+}
+.map{
+    position: absolute;
+    top:20px;
+    width: 550px;
+    height: 786px;
+    left: 1219px;
+}
+.extra_info{
+    position: absolute;
+    width: 1820px;
+    height: 800px;
+    left: 55px;
+    top: 2000px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px
+}
+.fact_info{   
+    position: absolute;
+    width: 550px;
+    height: 397px;
+    left: 45px;
+    top: 50px;
+}
+.fact_info_item{
+    position: absolute;
+    width: 550px;
+    height: 397px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 59px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+.ecological_info_title{
+    position: absolute;
+    width: 424px;
+    height: 47px;
+    top: 100px;
+}
+.ecological_info_title_item{
+    position: absolute;
+    width: 206px;
+    height: 47px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 47px;
+    /* identical to box height */
+
+
+    color: #2EC00E;
+}
+.ecological_info_content{
+    position: absolute;
+    width: 206px;
+    height: 47px;
+    left: 321px;
+    top: 100px;
+}
+.ecological_info_content_item{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 47px;
+    /* identical to box height */
+
+
+    color: #000000
+}
+.valuable_info_title{
+    position: absolute;
+    width: 424px;
+    height: 47px;
+    top: 250px;
+
+}
+.valuable_info_title_item{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 47px;
+
+    color: #2EC00E;
+}
+.valuable_info_content{
+    position: absolute;
+    width: 142px;
+    height: 47px;
+    left: 315px;
+    top: 250px;
+}
+.valuable_info_content_item{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 47px;
+
+    color: #000000;
+}
+.morphological_info_title{
+    position: absolute;
+    width: 550px;
+    height: 59px;
+    left: 945px;
+    top: 50px
+}
+.morphological_info_title_item{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 59px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+.morphological_info_content{
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    left: 945px;
+    top: 150px;
+}
+.morphological_info_content_item{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 47px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+.video{
+    position: absolute;
+    width: 1820px;
+    height: 1000px;
+    left: 55px;
+    top: 2900px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.video img{
+    width: 100%;
+}
+.video_title{
+    position: absolute;
+    width: 215px;
+    height: 110px;
+    left: 802px;
+    top: 62.5px;
+}
+.video_title_item{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 75px;
+    line-height: 88px;
+
+    color: #000000;
+}
+.video_content{
+    position: absolute;
+    width: 1200px;
+    height: 675px;
+    left: 310px;
+    top: 223px;
+}
+.content_footer{
+    position: absolute;
+    width: 1920px;
+    height: 400px;
+    left: 0px;
+    top: 4000px;
+
+    background: #B8B8B8;
+}
+.logo_footer{
+    position: absolute;
+    width: 300px;
+    height: 260.31px;
+    left: 50px;
+    top: 45px;
+}
+.logo_footer img{
+    width: 100%;
+}
+.search_bar_footer{
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    left: 1450px;
+    top: 50px;
+}
+.copyright{
+    position: absolute;
+    width: 1920px;
+    height: 100px;
+    left: 0px;
+    top: 4400px;
+
+    background: #92FF89;
+}
+.copyright_content{
+    position: absolute;
+    width: 301px;
+    height: 35px;
+    left: 809px;
+    top: 32px;
+}
+.copyright_content_item{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #000000;
+}
+.button_search_footer{
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    left: 1725px;
+    top: 50px;
+}
+input[type=search]{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    color: #A5A5A5;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+input[type=submit]{
+    background: #2EC00E;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    cursor: pointer;
+    font-family: 'Roboto';
+    font-style: normal;
+    border-radius: 10px;
+    color: #FFFFFF;
+    border: none;
+}

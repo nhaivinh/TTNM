@@ -1,0 +1,342 @@
+body{
+    display: flex;
+    position: relative;
+    width: 1920px;
+    height: 2800px;
+    background: #EEEEEE;
+    padding: 0;
+    margin: 0;
+}
+footer{
+    margin: 0;
+    padding: 0;
+}
+.Logo{
+    position: absolute;
+    width: 100px;
+    height: 86.77px;
+    left: 17px;
+    top: 13px;
+}
+.Logo img{
+    width: 100%;
+}
+.navigator_bar{
+    position: fixed;
+    width: 1920px;
+    height: 100px;
+    left: 0px;
+    top: 0px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+
+.guide{
+    position: absolute;
+    width: 173px;
+    height: 35px;
+    left: 514px;
+    top: 35px;
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #656565;
+    }
+.aboutus{
+    position: absolute;
+    width: 200px;
+    height: 35px;
+    left: 749px;
+    top: 35px;
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #656565;
+
+}
+.collection{
+    position: absolute;
+    width: 200px;
+    height: 35px;
+    left: 1000px;
+    top: 35px;  
+    text-decoration: none;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #656565;
+}
+.logout{
+    position: absolute;
+    width: 171px;
+    height: 35px;
+    left: 1250px;
+    top: 35px;
+    text-decoration: none;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #656565;
+}
+.input_search{
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    left: 1450px;
+    top: 25px;
+}
+.button_search{
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    left: 1725px;
+    top: 25px;
+}
+input[type=search]{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    color: #A5A5A5;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+input[type=submit]{
+    background: #2EC00E;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    cursor: pointer;
+    font-family: 'Roboto';
+    font-style: normal;
+    border-radius: 10px;
+    color: #FFFFFF;
+    border: none;
+}
+.page_content{
+    position: absolute;
+    width: 1920px;
+    height: 2000px;
+    left: 0px;
+    top: 150px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.intro_header{
+    position: absolute;
+    width: 1820px;
+    height: 600px;
+    left: 50px;
+    top: 70px;
+
+}
+.intro_header img{
+    width: 100%;
+    height: 100%;
+}
+.intro_header_text{
+    position: absolute;
+    width: 1480px;
+    height: 117px;
+    left: 55px;
+    top: 45px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 100px;
+    line-height: 117px;
+
+    color: #FFFFFF;
+}
+.intro_video{
+    position: absolute;
+    width: 1200px;
+    height: 675px;
+    left: 360px;
+    top: 1072px;
+}
+.intro_video img{
+    width: 100%;
+}
+.input_search{
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    left: 1450px;
+    top: 25px;
+}
+.button_search{
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    left: 1725px;
+    top: 25px;
+}
+.input_content_search{
+    position: absolute;
+    width: 700px;
+    height: 50px;
+    left: 50px;
+    top: 765px;
+}
+.content_search_button{
+    position: absolute;
+    width: 130px;
+    height: 35px;
+    left: 845px;
+    top: 765px;
+}
+.extend_button{
+    position: absolute;
+    width: 130px;
+    height: 35px;
+    left: 1000px;
+    top: 765px;
+}
+.result_search{
+    display: block;
+    position: absolute;
+    width: 1600px;
+    height: 0px;
+    left: 105px;
+    top: 200px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.result_search_items{
+    display: block;
+    width: 1600px;
+    height: 300px;
+    top: 250px;
+    margin-top: 100px;
+    padding-top: 20px;
+    border-top: 1px solid black;
+}
+.result_search_items_img{
+    position: absolute;
+    width: 480px;
+    height: 269.55px;
+}
+.result_search_items_img img{
+    width: 100%;
+    height: 100%;
+}
+.result_search_items_title{
+    position: absolute;
+    width: 132px;
+    height: 35px;
+    left: 540px;
+}
+.result_search_items_title_text{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #000000;
+}
+.result_search_items_content{
+    position: absolute;
+    width: 1000px;
+    height: 35px;
+    left: 540px;
+    padding-top: 50px;
+}
+.result_search_items_content_texts{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+
+    color: #000000;
+}
+.content_footer{
+    position: absolute;
+    width: 1920px;
+    height: 400px;
+    left: 0px;
+    top: 2300px;
+
+    background: #B8B8B8;
+}
+.logo_footer{
+    position: absolute;
+    width: 300px;
+    height: 260.31px;
+    left: 50px;
+    top: 45px;
+}
+.logo_footer img{
+    width: 100%;
+}
+.search_bar_footer{
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    left: 1450px;
+    top: 50px;
+}
+.copyright{
+    position: absolute;
+    width: 1920px;
+    height: 100px;
+    left: 0px;
+    top: 2700px;
+
+    background: #92FF89;
+}
+.copyright_content{
+    position: absolute;
+    width: 301px;
+    height: 35px;
+    left: 809px;
+    top: 32px;
+}
+.copyright_content_item{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #000000;
+}
+.button_search_footer{
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    left: 1725px;
+    top: 50px;
+}
