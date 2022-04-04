@@ -1,10 +1,11 @@
 <?php
-	session_start();
 	require_once('HTMLprocess.php');
 	require_once('DBprocess.php');
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		login();	
 	}
+
+    /*
 	if(isset($_POST['id_animal'])){
 		$id_animal = (int) $_POST['id_animal'];
 		if($id_animal != 0){
@@ -21,6 +22,7 @@
 
 		//header("Location: search_page.php");	
 	}
+    */
 ?>
 <html>
     <head>
@@ -63,6 +65,19 @@
 				document.getElementById("hidden-popup").classList.add("hidden");
 				document.getElementById("hidden-register").classList.add("hidden");
 			}
+
+            function addFavorite(){
+                <?php
+                    /*
+                    if(isset($_SESSION['username']) && isset($_GET['id_animal'])){
+                        $id_user = getIDUserByUsername($_SESSION['username']);
+                        $id_animal = $_GET['id_animal'];
+                        addToFavorite($id_user,$id_animal);
+                        header("Location:");
+                    } 
+                    */
+                ?>
+            }
 		</script>
 		<div class="login-container hidden" id="hidden-popup">
 			<div class="login-popup hidden" id="hidden-login">
@@ -105,12 +120,12 @@
 						echo '<button class="login" onclick="openPopup()">ĐĂNG NHẬP</button>';
 					}
 				?>
-                <form action="" method="POST">
+                <form action="search_page.php" method="GET">
                     <div class="input_search">
-                        <input type="search" name="search" placeholder="NHẬP GÌ ĐÓ">
+                        <input type="search" name="search_key" placeholder="NHẬP GÌ ĐÓ">
                     </div>                   
                     <div class="button_search">
-                        <input type="submit" name="search" value="TÌM KIẾM">
+                        <input type="submit" value="TÌM KIẾM">
                     </div> 
                 </form>
             </div>
@@ -143,7 +158,9 @@
 						?>
                     </div>
                     <div>
-                        <button class="add_button">THÊM VÀO THƯ VIỆN</button>
+                        <button type="button" class="add_button" onClick="<?php if(isset($_SESSION['username'])) echo 'addFavorite()'; else echo 'openPopup()';?>">
+                            THÊM VÀO THƯ VIỆN
+                        </button>
                     </div>    
                     <div>
                         <button class="share_button">CHIA SẺ</button>
@@ -284,5 +301,10 @@
 		$alert = "<script>alert('".$_SESSION['login_status']."');</script>";
 		echo $alert;
 		unset($_SESSION['login_status']);
+	}
+    if(isset($_SESSION['addFavorite_success'])){
+		$alert = "<script>alert('".$_SESSION['addFavorite_success']."');</script>";
+		echo $alert;
+		unset($_SESSION['addFavorite_success']);
 	}
 ?>

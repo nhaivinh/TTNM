@@ -48,6 +48,8 @@
 		$connect = connectDB();
 		$query = "INSERT INTO `favoritelist_animal` (`ID_User`, `ID_Animal`) VALUES ('".$id_user."', '".$id_animal."');";
 		mysqli_query(connectDB(), $query);
+		closeDB($connect);
+		$_SESSION['addFavorite_success'] = "Thêm vào thư viện thành công";
 	}
 	function removeFavorite($id_user,$id_animal){
 		$connect = connectDB();
@@ -68,9 +70,9 @@
 	}
 
 	function showSearchAnimal(){
-		if(isset($_POST['search_content_input'])){
+		if(isset($_GET['search_key'])){
 			$connect = connectDB();
-			$search_key = $_POST['search_content_input'];
+			$search_key = $_GET['search_key'];
 			
 			//Lay so luong animal
 			/*

@@ -95,9 +95,9 @@
 						echo '<button class="login" onclick="openPopup()">ĐĂNG NHẬP</button>';
 					}
 				?>
-                <form action="" method="POST">
+                <form action="" method="GET">
                     <div class="input_search">
-                        <input type="search" name="search_input" placeholder="NHẬP GÌ ĐÓ">
+                        <input type="search" name="search_key" placeholder="NHẬP GÌ ĐÓ">
                     </div>                   
                     <div class="button_search">
                         <input type="submit" name="search" value="TÌM KIẾM">
@@ -110,9 +110,9 @@
             <div class="search_content_title">               
                 <span class="search_content_title_texts">
 					<?php
-						if(isset($_POST['search_content_input'])){
-							if(!empty($_POST['search_content_input'])){
-								echo 'Kết quả tìm kiếm cho "'.$_POST['search_content_input'].'"';
+						if(isset($_GET['search_key'])){
+							if(!empty($_GET['search_key'])){
+								echo 'Kết quả tìm kiếm cho "'.$_GET['search_key'].'"';
 							}
 							else{
 								echo '""';
@@ -121,15 +121,15 @@
 					?>
 				</span>
             </div>
-            <form action="" method="POST">
+            <form action="" method="GET">
                 <div class="input_content_search">
-                    <input type="search" name="search_content_input" placeholder="NHẬP GÌ ĐÓ">
+                    <input type="search" name="search_key" placeholder="NHẬP GÌ ĐÓ">
                 </div>                   
                 <div class="content_search_button">
-                    <input type="submit" name="search_content" value="TÌM KIẾM">
+                    <input type="submit" value="TÌM KIẾM">
                 </div> 
                 <div class="extend_button">
-                    <input type="submit" name="extend" value="NÂNG CAO">
+                    <input type="submit"value="NÂNG CAO">
                 </div> 
             </form>
             <div class="result_search">

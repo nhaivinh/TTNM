@@ -106,15 +106,15 @@
                 <img src="./img/header.png">
                 <span class="intro_header_text">TÌM HIỂU VỀ ĐỘNG VẬT NGAY !!!</span>
             </div>
-            <form action="search_page.php" method="POST">
+            <form action="search_page.php" method="GET">
                 <div class="input_content_search">
-                    <input type="search" name="search_content_input" placeholder="NHẬP GÌ ĐÓ">
+                    <input type="search" name="search_key" placeholder="NHẬP GÌ ĐÓ">
                 </div>                   
                 <div class="content_search_button">
-                    <input type="submit" name="search_content" value="TÌM KIẾM">
+                    <input type="submit" value="TÌM KIẾM">
                 </div> 
                 <div class="extend_button">
-                    <input type="submit" name="extend" value="NÂNG CAO">
+                    <input type="submit" value="NÂNG CAO">
                 </div> 
             </form>
             <div class="intro_video">
