@@ -4,25 +4,23 @@
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		login();	
 	}
-
-    /*
-	if(isset($_POST['id_animal'])){
-		$id_animal = (int) $_POST['id_animal'];
-		if($id_animal != 0){
-			$animal_detail = getAnimalByID($_POST['id_animal']);
+    $animal_detail = array();
+    $animal_coordinate = array();
+	if(isset($_GET['id_animal'])){
+		$id_animal = (int) $_GET['id_animal'];
+		if($id_animal != 0 && $id_animal <= getMAXIDAnimal()){
+			$animal_detail = getAnimalByID($id_animal);
+            $animal_coordinate = getCoordinateAnimalByID($id_animal);
 		}
 		else{
-			$alert = "<script>alert('ID_Animal không hợp lệ');</script>";
-			echo $alert;
+			$_SESSION['detail_page_status'] = "ID_Animal không hợp lệ xin hãy chọn lại";
+		    header("Location: search_page.php?search_key=&page=1");
 		}
 	}
 	else{
-		$alert = "<script>alert('Hãy chọn con vật bạn cần biết thêm thông tin');</script>";
-		echo $alert;
-
-		//header("Location: search_page.php");	
+        $_SESSION['detail_page_status'] = "Hãy chọn con vật mà muốn biết thêm thông tin";
+		header("Location: search_page.php?search_key=&page=1");	
 	}
-    */
 ?>
 <html>
     <head>
@@ -138,10 +136,10 @@
 				
                 <div class="info_animal">
                     <span class="vie_animal_name">
-                        Hổ
+                        Hổ <?php //echo $animal_detail['Ten_TV'] ?>
                     </span>
                     <span class="eng_animal_name">
-                        Panthera Tigris
+                        Panthera Tigris <?php //echo $animal_detail['Ten_TV'] ?>
                     </span>
                     <div class="status_animal_title">
                         <span>
@@ -150,8 +148,9 @@
                         <br>
 						<?php
 							if(isset($_SESSION['username'])){
-								$collectionStatus = 'OWNED';
-								if($collectionStatus == 'OWNED') echo '<span class="status_animal_on">ĐÃ SỞ HỮU</span>';
+                                $id_animal = (int) $_GET['id_animal'];
+                                $id_user = getIDUserByUsername($_SESSION['username']);
+								if(isFavorite($id_user, $id_animal)) echo '<span class="status_animal_on">ĐÃ SỞ HỮU</span>';
 								else echo '<span class="status_animal_off">CHƯA SỞ HỮU</span>';
 							}
 							else echo '<span class="status_animal">CHƯA RÕ</span>';
@@ -166,7 +165,6 @@
                         <button class="share_button">CHIA SẺ</button>
                     </div> 
                 </div>
-				
             </div>
         </form>
 
@@ -193,11 +191,13 @@
                     <br>
                     <span class="science_info_content_texts">Chordata</span>
                     <br>
-                    <span class="science_info_content_texts">Mammalia</span>
+                    <span class="science_info_content_texts"><?php echo $animal_detail['Lop'] ?></span>
                     <br>
-                    <span class="science_info_content_texts">Felidae</span>
+                    <span class="science_info_content_texts"><?php echo $animal_detail['Bo'] ?></span>
                     <br>
-                    <span class="science_info_content_texts">Panthera Tigris</span>
+                    <span class="science_info_content_texts"><?php echo $animal_detail['Ho'] ?></span>
+                    <br>
+                    <span class="science_info_content_texts"><?php echo $animal_detail['Ten_KH'] ?></span>
                 </div>
             </div>
             <div class="location_info">
@@ -212,11 +212,13 @@
                     </span>
                 </div>
                 <div class="location_info_content_number">
-                    <span class="location_info_content_number_texts">9.571639 N, 105.748757 E</span>
-                    <span class="location_info_content_number_texts">9.563858 N, 105.742898 E</span>
-                    <span class="location_info_content_number_texts">9.572843 N, 105.745688 E</span>
-                    <span class="location_info_content_number_texts">9.571639 N, 105.748757 E</span>
-                    <span class="location_info_content_number_texts">9.571639 N, 105.748757 E</span>
+                    <?php
+                        for($i=0;$i<count($animal_coordinate);$i++){
+                            echo '<span class="location_info_content_number_texts">
+                                    '.$animal_coordinate[$i]['Vido'].', '.$animal_coordinate[$i]['Kinhdo'].'
+                                </span>';
+                        }
+                    ?>
                 </div>
             </div>
             <div class="maintain_status">
@@ -227,7 +229,7 @@
                 </div>
                 <div class="maintain_status_content">
                     <span class="maintain_status_content_texts">
-                        Nguy cơ tuyệt chủng
+                        <?php echo $animal_detail['Tinhtrang'] ?>
                     </span>
                 </div>
             </div>
@@ -242,20 +244,20 @@
                     <span class="ecological_info_title_item">Sinh thái</span>
                 </div>
                 <div class="ecological_info_content">
-                    <span class="ecological_info_content_item">Trong hang</span>
+                    <span class="ecological_info_content_item"><?php echo $animal_detail['Moitruong_song'] ?></span>
                 </div>
                 <div class="valuable_info_title">
                     <span class="valuable_info_title_item">Giá trị</span>
                 </div>
                 <div class="valuable_info_content">
-                    <span class="valuable_info_content_item">Chưa rõ</span>
+                    <span class="valuable_info_content_item"><?php echo $animal_detail['Giatri_sudung'] ?></span>
                 </div>
             </div>
             <div class="morphological_info_title">
                 <span class="morphological_info_title_item">Đặc điểm hình thái</span>
             </div>
             <div class="morphological_info_content">
-                <span class="morphological_info_content_item">Thông tin đặc điểm hình thái</span>
+                <span class="morphological_info_content_item"><?php echo $animal_detail['Hinhthai'] ?></span>
             </div>
         </div>
         <div class="video">
