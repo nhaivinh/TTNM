@@ -1,5 +1,10 @@
 <?php
 	require_once('DBconnect.php');
+	function getCurrentURL(){
+		$url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		$validURL = str_replace("&","&amp;",$url);
+		return $validURL;
+	}
 	function getIDUserByUsername($username){
 		$connect = connectDB();
 		$query = "Select ID_User from user_account where username='".$username."'";
@@ -69,56 +74,189 @@
 		else return false;
 	}
 
+	function setURLforSearchPage($search_key, $page){
+		$setURL = "./search_page.php?search_key=".$search_key."&page=".$page;
+
+		return $setURL;
+	}
 	function showSearchAnimal(){
-		if(isset($_GET['search_key'])){
+		if(isset($_GET['search_key']) && isset($_GET['page'])){
 			$connect = connectDB();
-			$search_key = $_GET['search_key'];
-			
-			//Lay so luong animal
-			/*
-			$query = "Select count(*) as amount from animal where ten_TV like '%".$search_key."%' or ten_KH like '%".$search_key."%' or ten_local like '%".$search_key."%'";
-			$result = mysqli_query($connect, $query);
-			$data = array();
-			while($row = mysqli_fetch_array($result, 1)){
-				$data[] = $row;
-			}
-			$amount = $data[0]['amount'];  
-			$so_hang = ceil($amount/4);
-			*/
-			
-			//Lay thong tin animal
+			$search_key = $_GET['search_key'];			
+			$cur_page = $_GET['page'];	
+
 			$query = "Select * from animal where ten_TV like '%".$search_key."%' or ten_KH like '%".$search_key."%' or ten_local like '%".$search_key."%'";
 			$result = mysqli_query($connect, $query);
+			$total_animal = mysqli_num_rows($result);
+            $total_page = ceil($total_animal/4);
 			$data = array();
 			while($row = mysqli_fetch_array($result, 1)){
 				$data[] = $row;
 			}
-			
-			for($i=0;$i<count($data);$i++){
-				echo '<div class="result_search_items">';
-					echo '<div class="result_search_items_img">';
-						echo '<img src="./img/tiger.jpg" alt="tiger">';
+
+			echo '<div class="result_search">';
+			for($i=$cur_page*4-4;$i<$cur_page*4;$i++){
+				if($i != $total_animal){
+					echo '<div class="result_search_items">';
+						echo '<div class="result_search_items_img">';
+							echo '<img src="./img/tiger.jpg" alt="tiger">';
+						echo '</div>';
+							
+						echo '<div class="result_search_items_title">';
+								if(isset($_SESSION['username'])){
+									$username = $_SESSION['username'];
+									if(isFavorite(getIDUserByUsername($username),$data[$i]['ID_Animal'])) 
+										echo '<span class="result_search_items_title_text_owned">'.$data[$i]['Ten_TV'].'</span>';
+									else 
+										echo '<span class="result_search_items_title_text_not_owned">'.$data[$i]['Ten_TV'].'</span>';
+								}
+								else{
+									echo '<span class="result_search_items_title_text">'.$data[$i]['Ten_TV'].'</span>';
+								}
+						echo '</div>';
+						echo '<div class="result_search_items_content">';
+							echo '<span class="result_search_items_content_texts">'.$data[$i]['Hinhthai'].'</span>';
+						echo '</div>';
 					echo '</div>';
-						
-					echo '<div class="result_search_items_title">';
-							if(isset($_SESSION['username'])){
-								$username = $_SESSION['username'];
-								if(isFavorite(getIDUserByUsername($username),$data[$i]['ID_Animal'])) 
-									echo '<span class="result_search_items_title_text_owned">'.$data[$i]['Ten_TV'].'</span>';
-								else 
-									echo '<span class="result_search_items_title_text_not_owned">'.$data[$i]['Ten_TV'].'</span>';
-							}
-							else{
-								echo '<span class="result_search_items_title_text">'.$data[$i]['Ten_TV'].'</span>';
-							}
-					echo '</div>';
-					echo '<div class="result_search_items_content">';
-						echo '<span class="result_search_items_content_texts">'.$data[$i]['Hinhthai'].'</span>';
-					echo '</div>';
-				echo '</div>';
-			
+				}
+				else{
+					break;
+				}
 			}
-			
+			echo '</div>';
+
+			$page_left = -1;
+			$page_right = -1;
+			if($cur_page == 1){
+				$page_left = 1;
+			}
+			else{
+				$page_left = $cur_page - 1;
+			}
+			if($cur_page == $total_page){
+				$page_right = $cur_page;
+			}
+			else{
+				$page_right = $cur_page + 1;
+			}
+			if($total_page > 1){
+				echo '
+					<div class="page_choose">
+						<ul>
+							<a href="'.setURLforSearchPage($search_key,$page_left).'">
+								<li>
+									<i class="arrow left"></i>
+								</li>
+							</a>
+				';
+			}
+			if($cur_page < 3){
+				if($total_page < 5){
+					for($i=1;$i<=$total_page;$i++){
+						echo '<a href="'.setURLforSearchPage($search_key,$i).'">
+							<li class="pageitem" id="pageNumber'.$i.'">
+								'.$i.'
+							</li>
+						</a>';
+					}
+				}
+				else{
+					echo '<a href="'.setURLforSearchPage($search_key,1).'">
+						<li class="pageitem" id="pageNumber1">
+							1
+						</li>
+					</a>';
+					echo '<a href="'.setURLforSearchPage($search_key,2).'">
+						<li class="pageitem" id="pageNumber2">
+							2
+						</li>
+					</a>';
+					echo '<a href="'.setURLforSearchPage($search_key,3).'">
+						<li class="pageitem" id="pageNumber3">
+							3
+						</li>
+					</a>';	
+					echo '<a href="'.setURLforSearchPage($search_key,4).'">
+						<li class="pageitem" id="pageNumber4">
+							4
+						</li>
+					</a>';
+					echo '<a href="'.setURLforSearchPage($search_key,5).'">
+						<li class="pageitem" id="pageNumber5">
+							5
+						</li>
+					</a>';
+				}
+				echo '<script type="text/javascript">choosePage('.$cur_page.');</script>';
+			}
+			else if($cur_page > $total_page-2){
+				echo '<a href="'.setURLforSearchPage($search_key,$total_page-4).'">
+					<li class="pageitem" id="pageNumber'.($total_page-4).'">
+						'.($total_page-4).'
+					</li>
+				</a>';
+				
+				echo '<a href="'.setURLforSearchPage($search_key,$total_page-3).'">
+					<li class="pageitem" id="pageNumber'.($total_page-3).'">
+					'.($total_page-3).'
+					</li>
+				</a>';
+				echo '<a href="'.setURLforSearchPage($search_key,$total_page-2).'">
+					<li class="pageitem" id="pageNumber'.($total_page-2).'">
+					'.($total_page-2).'
+					</li>
+				</a>';	
+				echo '<a href="'.setURLforSearchPage($search_key,$total_page-1).'">
+					<li class="pageitem" id="pageNumber'.($total_page-1).'"> 
+					'.($total_page-1).'
+					</li>
+				</a>';
+				echo '<a href="'.setURLforSearchPage($search_key,$total_page).'">
+					<li class="pageitem" id="pageNumber'.$total_page.'">
+					'.$total_page.'
+					</li>
+				</a>';
+				echo '<script type="text/javascript">choosePage('.$cur_page.');</script>';
+			}
+			else{
+				echo '<a href="'.setURLforSearchPage($search_key,$cur_page-2).'">
+					<li class="pageitem" id="pageNumber'.($cur_page-2).'">
+						'.($cur_page-2).'
+					</li>
+				</a>';
+				echo '<a href="'.setURLforSearchPage($search_key,$cur_page-1).'">
+					<li class="pageitem" id="pageNumber'.($cur_page-1).'">
+					'.($cur_page-1).'
+					</li>
+				</a>';
+				echo '<a href="'.setURLforSearchPage($search_key,$cur_page).'">
+					<li class="pageitem" id="pageNumber'.$cur_page.'">
+					'.$cur_page.'
+					</li>
+				</a>';	
+				echo '<a href="'.setURLforSearchPage($search_key,$cur_page+1).'">
+					<li class="pageitem" id="pageNumber'.($cur_page+1).'">
+					'.($cur_page+1).'
+					</li>
+				</a>';
+				echo '<a href="'.setURLforSearchPage($search_key,$cur_page+2).'">
+					<li class="pageitem" id="pageNumber'.($cur_page+2).'">
+					'.($cur_page+2).'
+					</li>
+				</a>';
+				echo '<script type="text/javascript">choosePage('.$cur_page.');</script>';
+			}
+			if($total_page > 1){
+				echo '
+						<a href="'.setURLforSearchPage($search_key,$page_right).'">
+							<li>
+								<i class="arrow right"></i>
+							</li>
+						</a>				
+					</ul>
+				</div>
+				';
+			}
 			closeDB($connect);
 		}
 	}

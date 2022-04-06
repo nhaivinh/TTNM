@@ -1,15 +1,15 @@
 <?php
-	session_start();
 	require_once('HTMLprocess.php');
 	require_once('DBprocess.php');
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		login();	
 	}
-	/*
-	if(!isset($_SESSION['username'])){
-		$_SESSION['username'] = ' ';
+	if(!isset($_GET['search_key'])){
+		$_GET['search_key'] = ' ';
 	}
-	*/
+	if(!isset($_GET['page'])){
+		$_GET['page'] = '1';
+	}
 ?>
 <html>
     <head>
@@ -53,6 +53,11 @@
 				document.getElementById("hidden-register").classList.add("hidden");
 			}
 
+			function choosePage(index){
+				strPage = "pageNumber" + index;
+				alert("index là " + index);
+				document.getElementById(strPage).classList.add("current");
+			}
 		</script>
 		<div class="login-container hidden" id="hidden-popup">
 			<div class="login-popup hidden" id="hidden-login">
@@ -132,76 +137,9 @@
                     <input type="submit"value="NÂNG CAO">
                 </div> 
             </form>
-            <div class="result_search">
-				<?php
-					$data = array("true","false","false","false");
-					for($i=0;$i<count($data);$i++){
-					echo '<div class="result_search_items">';
-						echo '<div class="result_search_items_img">';
-							echo '<img src="./img/tiger.jpg" alt="tiger">';
-						echo '</div>';
-						
-						echo '<div class="result_search_items_title">';
-								if(isset($_SESSION['username'])){
-									if($data[$i] == "true") echo '<span class="result_search_items_title_text_owned">Hổ rừng</span>';
-									else echo '<span class="result_search_items_title_text_not_owned">Hổ rừng</span>';
-								}
-								else{
-									echo '<span class="result_search_items_title_text">Hổ rừng</span>';
-								}
-						echo '</div>';
-						echo '<div class="result_search_items_content">';
-							echo '<span class="result_search_items_content_texts">
-								Phần lớn các loài hổ sống trong rừng và đồng cỏ (những khu vực mà khả năng ngụy trang của chúng phù hợp nhất). Trong số các loài mèo lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. 
-								Phần lớn các loài hổ sống trong rừng và đồng cỏ (những khu vực mà khả năng ngụy trang của chúng phù hợp nhất). Trong số các loài mèo lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông.
-								Phần lớn các loài hổ sống trong rừng và đồng cỏ (những khu vực mà khả năng ngụy trang của chúng phù hợp nhất). Trong số các loài mèo lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông.
-								Phần lớn các loài hổ sống trong rừng và đồng cỏ (những khu vực mà khả năng ngụy trang của chúng phù hợp nhất). Trong số các loài mèo lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông. Hổ kém mèo nhà và báo hoa mai về khả năng leo trèo. Hổ đi săn đơn lẻ, thức ăn của chúng chủ yếu là các động vật ăn cỏ cỡ trung bình như hươu, nai, lợn rừng, trâu, v.v. Tuy nhiên chúng cũng có thể bắt các loại mồi cỡ to hay nhỏ hơn nếu hoàn cảnh cho phép.o lớn, chỉ có hổ và báo đốm là bơi giỏi, và thông thường người ta hay thấy hổ tắm trong ao, hồ và sông.
-								</span>';
-						echo '</div>';
-					echo '</div>';
-					}
-				?>
-			</div>
-			<div class="page_choose">
-				<ul>
-					<a href="">
-						<li>
-							<i class="arrow left"></i>
-						</li>
-					</a>
-					<a href="">
-						<li class="current">
-							<a href="">1</a>
-						</li>
-					</a>
-					<a href="">
-						<li>
-							<a href="">2</a>
-						</li>
-					</a>
-					<a href="">
-						<li>
-							<a href="">..</a>
-						</li>
-					</a>
-					<a href="">
-						<li>
-							<a href="">5</a>
-						</li>
-					</a>
-					<a href="">
-						<li>
-							<a href="">6</a>
-						</li>
-					</a>
-					<a href="">
-						<li>
-						<a href=""><i class="arrow right"></i></a>
-						</li>
-					</a>				
-				</ul>
-			</div>
-		</div>
+			<?php
+            showSearchAnimal();
+			?>
     </body>
     <footer>
         <div class="content_footer">
