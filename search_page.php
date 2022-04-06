@@ -7,8 +7,14 @@
 	if(!isset($_GET['search_key'])){
 		$_GET['search_key'] = ' ';
 	}
-	if(!isset($_GET['page'])){
+	if(!isset($_GET['page']) ){
 		$_GET['page'] = '1';
+	}
+	else {
+		$page_number = (int) $_GET['page'];
+		if($page_number == 0){
+			$_GET['page'] = '1';
+		}
 	}
 ?>
 <html>
@@ -55,7 +61,6 @@
 
 			function choosePage(index){
 				strPage = "pageNumber" + index;
-				alert("index là " + index);
 				document.getElementById(strPage).classList.add("current");
 			}
 		</script>
@@ -175,5 +180,10 @@
 		$alert = "<script>alert('".$_SESSION['login_status']."');</script>";
 		echo $alert;
 		unset($_SESSION['login_status']);
+	}
+	if(isset($_SESSION['detail_page_status'])){
+		$alert = "<script>alert('".$_SESSION['detail_page_status']."');</script>";
+		echo $alert;
+		unset($_SESSION['detail_page_status']);
 	}
 ?>

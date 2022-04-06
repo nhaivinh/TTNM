@@ -16,6 +16,17 @@
 		closeDB($connect);
 		return $data[0]['ID_User'];
 	}
+	function getMAXIDAnimal(){
+		$connect = connectDB();
+		$query = "Select max(id_animal) as MAX from animal";
+		$result = mysqli_query($connect, $query);
+		$data = array();
+		while($row = mysqli_fetch_array($result, 1)){
+			$data[] = $row;
+		}	
+		closeDB($connect);
+		return $data[0]['MAX'];
+	}
 	function getAnimalByID($id){
 		$connect = connectDB();
 		$query = "Select * from animal where id_animal='".$id."'";
@@ -25,7 +36,7 @@
 			$data[] = $row;
 		}	
 		closeDB($connect);
-		return $data;
+		return $data[0];
 	}
 	function getCoordinateAnimalByID($id){
 		$connect = connectDB();
