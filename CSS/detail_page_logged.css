@@ -262,11 +262,11 @@ body{
 
     color: #000000;
 }
-.science_info_title{
+.science_info_title {
     position: absolute;
     width: 550px;
     height: 59px;
-    left: 45px;
+    left: 10px;
     top: 100px;
 }
 .science_info_texts{
@@ -288,18 +288,18 @@ body{
     text-align: right;
     color: #2EC00E;
 }
-.science_info_content{
+.science_info_content {
     position: absolute;
-    width: 159px;
+    width: 500px;
     height: 47px;
-    left: 350px;
+    left: 160px;
     top: 100px;
 }
 .science_info_content_texts{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 32px;
     line-height: 75px;
     
     color: #000000;
@@ -327,7 +327,7 @@ body{
 }
 .location_info_content_text{
     position: absolute;
-    width: 315px;
+    width: 530px;
     height: 47px;
     top: 115px;
 }
@@ -335,7 +335,7 @@ body{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 32px;
     line-height: 47px;
 
     color: #2EC00E;
@@ -366,13 +366,14 @@ body{
 .maintain_status_title{
     position: absolute;
     width: 550px;
-    height: 59px
+    height: 59px;
 }
 .maintain_status_title_texts{
+    text-align: left;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    font-size: 50px;
+    font-size: 40px;
     line-height: 59px;
     text-transform: uppercase;
 
@@ -388,7 +389,7 @@ body{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    font-size: 50px;
+    font-size: 40px;
     line-height: 59px;
     text-transform: uppercase;
 
@@ -436,7 +437,7 @@ body{
 }
 .ecological_info_title{
     position: absolute;
-    width: 424px;
+    width: 900px;
     height: 47px;
     top: 100px;
 }
@@ -457,19 +458,19 @@ body{
 }
 .ecological_info_content{
     position: absolute;
-    width: 206px;
-    height: 47px;
-    left: 321px;
+    width: 700px;
+    height: 470px;
+    left : 180px;
     top: 100px;
+    text-overflow: ellipsis;
+    overflow-y: scroll;
 }
 .ecological_info_content_item{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 32px;
     line-height: 47px;
-    /* identical to box height */
-
 
     color: #000000
 }
@@ -477,8 +478,7 @@ body{
     position: absolute;
     width: 424px;
     height: 47px;
-    top: 250px;
-
+    top: 600px;
 }
 .valuable_info_title_item{
     font-family: 'Roboto';
@@ -491,16 +491,16 @@ body{
 }
 .valuable_info_content{
     position: absolute;
-    width: 142px;
+    width: 800px;
     height: 47px;
-    left: 315px;
-    top: 250px;
+    left: 180px;
+    top: 600px;
 }
 .valuable_info_content_item{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 32px;
     line-height: 47px;
 
     color: #000000;
@@ -518,23 +518,23 @@ body{
     font-weight: 900;
     font-size: 50px;
     line-height: 59px;
-    /* identical to box height */
-
 
     color: #000000;
 }
 .morphological_info_content{
     position: absolute;
     width: 800px;
-    height: 800px;
+    height: 600px;
     left: 945px;
     top: 150px;
+    text-overflow: ellipsis;
+    overflow-y: scroll;
 }
 .morphological_info_content_item{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 32px;
     line-height: 47px;
     /* identical to box height */
 

@@ -193,7 +193,7 @@
                     <br>
                     <span class="science_info_title_texts">Họ</span>
                     <br>
-                    <span class="science_info_title_texts">Tên Khoa Học</span>
+                    <span class="science_info_title_texts">Tên KH</span>
                 </div>
                 <div class="science_info_content">
                     <span class="science_info_content_texts"><?php echo $animal_detail['Gioi'] ?></span>
