@@ -189,7 +189,7 @@
                 <div class="science_info_content">
                     <span class="science_info_content_texts"><?php echo $animal_detail['Gioi'] ?></span>
                     <br>
-                    <span class="science_info_content_texts">Chordata</span>
+                    <span class="science_info_content_texts"><?php echo $animal_detail['Nganh'] ?></span>
                     <br>
                     <span class="science_info_content_texts"><?php echo $animal_detail['Lop'] ?></span>
                     <br>
