@@ -166,10 +166,10 @@
 			else{
 				$page_right = $cur_page + 1;
 			}
+			echo '<div class="page_choose">
+					<ul>';
 			if($total_page > 1){
 				echo '
-					<div class="page_choose">
-						<ul>
 							<a href="'.setURLforSearchPage($search_key,$page_left).'">
 								<li>
 									<i class="arrow left"></i>
@@ -280,10 +280,10 @@
 								<i class="arrow right"></i>
 							</li>
 						</a>				
-					</ul>
-				</div>
 				';
 			}
+			echo '</ul>
+				</div>';
 			closeDB($connect);
 		}
 	}
