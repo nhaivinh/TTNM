@@ -49,6 +49,17 @@
 		closeDB($connect);
 		return $data;
 	}
+	function getLinkDefaultPicAnimalByID($id){
+		$connect = connectDB();
+		$query = "Select * from picture where id_animal='".$id."' and Default_Pic='1'";
+		$result = mysqli_query($connect, $query);
+		$data = array();
+		while($row = mysqli_fetch_array($result, 1)){
+			$data[] = $row;
+		}	
+		closeDB($connect);
+		return $data[0]['Link_Picture'];
+	}
 	function getFavoriteList($id_user){
 		$connect = connectDB();
 		$query = "Select * from favoritelist_animal where ID_user='".$id_user."'";
@@ -108,27 +119,32 @@
 			echo '<div class="result_search">';
 			for($i=$cur_page*4-4;$i<$cur_page*4;$i++){
 				if($i != $total_animal){
-					echo '<div class="result_search_items">';
-						echo '<div class="result_search_items_img">';
-							echo '<img src="./img/tiger.jpg" alt="tiger">';
+					$cur_id_animal = $data[$i]['ID_Animal'];
+					$link_detailpage = "detail_page.php?id_animal=".$cur_id_animal;
+					$link_pic = getLinkDefaultPicAnimalByID($cur_id_animal);
+					echo '<a href="'.$link_detailpage.'">';
+						echo '<div class="result_search_items">';
+							echo '<div class="result_search_items_img">';
+								echo '<img src="'.$link_pic.'" alt="'.$data[$i]['Ten_TV'].'">';
+							echo '</div>';
+								
+							echo '<div class="result_search_items_title">';
+									if(isset($_SESSION['username'])){
+										$username = $_SESSION['username'];
+										if(isFavorite(getIDUserByUsername($username),$data[$i]['ID_Animal'])) 
+											echo '<span class="result_search_items_title_text_owned">'.$data[$i]['Ten_TV'].'</span>';
+										else 
+											echo '<span class="result_search_items_title_text_not_owned">'.$data[$i]['Ten_TV'].'</span>';
+									}
+									else{
+										echo '<span class="result_search_items_title_text">'.$data[$i]['Ten_TV'].'</span>';
+									}
+							echo '</div>';
+							echo '<div class="result_search_items_content">';
+								echo '<span class="result_search_items_content_texts">'.$data[$i]['Hinhthai'].'</span>';
+							echo '</div>';
 						echo '</div>';
-							
-						echo '<div class="result_search_items_title">';
-								if(isset($_SESSION['username'])){
-									$username = $_SESSION['username'];
-									if(isFavorite(getIDUserByUsername($username),$data[$i]['ID_Animal'])) 
-										echo '<span class="result_search_items_title_text_owned">'.$data[$i]['Ten_TV'].'</span>';
-									else 
-										echo '<span class="result_search_items_title_text_not_owned">'.$data[$i]['Ten_TV'].'</span>';
-								}
-								else{
-									echo '<span class="result_search_items_title_text">'.$data[$i]['Ten_TV'].'</span>';
-								}
-						echo '</div>';
-						echo '<div class="result_search_items_content">';
-							echo '<span class="result_search_items_content_texts">'.$data[$i]['Hinhthai'].'</span>';
-						echo '</div>';
-					echo '</div>';
+					echo '</a>';
 				}
 				else{
 					break;

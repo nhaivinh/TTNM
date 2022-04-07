@@ -131,7 +131,7 @@
         <form action="" method="POST">
             <div class="basic_info">
                 <div class="img_animal">
-                    <img src="./img/tiger.jpg" alt="tiger">
+                    <img src="<?php echo getLinkDefaultPicAnimalByID($_GET['id_animal']) ?>" alt="<?php echo $animal_detail['Ten_TV'] ?>">
                 </div>
 				
                 <div class="info_animal">
@@ -187,7 +187,7 @@
                     <span class="science_info_title_texts">Tên Khoa Học</span>
                 </div>
                 <div class="science_info_content">
-                    <span class="science_info_content_texts">Animalia</span>
+                    <span class="science_info_content_texts"><?php echo $animal_detail['Gioi'] ?></span>
                     <br>
                     <span class="science_info_content_texts">Chordata</span>
                     <br>
