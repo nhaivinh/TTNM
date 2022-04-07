@@ -128,7 +128,16 @@
                 </form>
             </div>
         </div>
-        <form action="" method="POST">
+        <form action="addFavorite.php" id="frmAddFavorite" method="POST">
+            <?php
+            if(isset($_SESSION['username'])){
+                $id_user =  getIDUserByUsername($_SESSION['username']);
+                $id_animal = $_GET['id_animal'];
+                echo '<input type="text" name="id_user" class="input hidden" value="'.$id_user.'">
+                    <input type="text" name="id_animal" class="input hidden" value="'.$id_animal.'">
+                ';
+            }
+            ?>
             <div class="basic_info">
                 <div class="img_animal">
                     <img src="<?php echo getLinkDefaultPicAnimalByID($_GET['id_animal']) ?>" alt="<?php echo $animal_detail['Ten_TV'] ?>">
@@ -157,7 +166,7 @@
 						?>
                     </div>
                     <div>
-                        <button type="button" class="add_button" onClick="<?php if(isset($_SESSION['username'])) echo 'addFavorite()'; else echo 'openPopup()';?>">
+                        <button type="button" class="add_button" onClick="<?php if(isset($_SESSION['username'])) echo 'document.getElementById(\'frmAddFavorite\').submit();'; else echo 'openPopup()';?>">
                             THÊM VÀO THƯ VIỆN
                         </button>
                     </div>    
@@ -207,9 +216,7 @@
                     </span>
                 </div>
                 <div class="location_info_content_text">
-                    <span class="location_info_context_text_texts">
-                        Mỹ Tú, Sóc Trăng
-                    </span>
+                    <span class="location_info_context_text_texts"> <?php echo $animal_detail['Diadiem'] ?></span>
                 </div>
                 <div class="location_info_content_number">
                     <?php
@@ -304,9 +311,9 @@
 		echo $alert;
 		unset($_SESSION['login_status']);
 	}
-    if(isset($_SESSION['addFavorite_success'])){
-		$alert = "<script>alert('".$_SESSION['addFavorite_success']."');</script>";
+    if(isset($_SESSION['addFavorite_status'])){
+		$alert = "<script>alert('".$_SESSION['addFavorite_status']."');</script>";
 		echo $alert;
-		unset($_SESSION['addFavorite_success']);
+		unset($_SESSION['addFavorite_status']);
 	}
 ?>
