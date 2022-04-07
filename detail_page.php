@@ -136,10 +136,10 @@
 				
                 <div class="info_animal">
                     <span class="vie_animal_name">
-                        Hổ <?php //echo $animal_detail['Ten_TV'] ?>
+                        <?php echo $animal_detail['Ten_TV'] ?>
                     </span>
                     <span class="eng_animal_name">
-                        Panthera Tigris <?php //echo $animal_detail['Ten_TV'] ?>
+                        <?php echo $animal_detail['Ten_KH'] ?>
                     </span>
                     <div class="status_animal_title">
                         <span>

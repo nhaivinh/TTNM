@@ -122,27 +122,28 @@ body{
     left: 950px;
 }
 .vie_animal_name{
+    display: block;
     position: absolute;
-    width: 147px;
+    width: 600px;
     height: 117px;
-    left: 445px;
-
+    left: 250px;
+    text-align: center;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    font-size: 100px;
-    line-height: 117px;
+    font-size: 70px;
+    line-height: 100px;
 
     color: #000000;
 
 }
 .eng_animal_name{
     position: absolute;
-    width: 348.57px;
+    width: 600px;
     height: 59px;
-    left: 346px;
     top: 117px;
-
+    left: 250px;
+    text-align: center;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
@@ -157,9 +158,8 @@ body{
     position: absolute;
     width: 550px;
     height: 118px;
-    left: 220px;
-    top: 220px;
-
+    left: 250px;
+    top: 300px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
@@ -176,8 +176,8 @@ body{
     position: absolute;
     width: 450px;
     height: 100px;
-    left: 270px;
-    top: 400px;
+    left: 300px;
+    top: 450px;
 
     background: #2EC00E;
     border-radius: 25px;
@@ -194,7 +194,7 @@ body{
     position: absolute;
     width: 450px;
     height: 100px;
-    left: 270px;
+    left: 300px;
     top: 557px;
 
     background: #2EC00E;
