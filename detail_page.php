@@ -63,19 +63,6 @@
 				document.getElementById("hidden-popup").classList.add("hidden");
 				document.getElementById("hidden-register").classList.add("hidden");
 			}
-
-            function addFavorite(){
-                <?php
-                    /*
-                    if(isset($_SESSION['username']) && isset($_GET['id_animal'])){
-                        $id_user = getIDUserByUsername($_SESSION['username']);
-                        $id_animal = $_GET['id_animal'];
-                        addToFavorite($id_user,$id_animal);
-                        header("Location:");
-                    } 
-                    */
-                ?>
-            }
 		</script>
 		<div class="login-container hidden" id="hidden-popup">
 			<div class="login-popup hidden" id="hidden-login">
@@ -128,13 +115,21 @@
                 </form>
             </div>
         </div>
-        <form action="addFavorite.php" id="frmAddFavorite" method="POST">
+        <form action="actionWithFavorite.php" id="frmAddFavorite" method="POST">
             <?php
             if(isset($_SESSION['username'])){
                 $id_user =  getIDUserByUsername($_SESSION['username']);
                 $id_animal = $_GET['id_animal'];
+                $action = "";
+                if(isFavorite($id_user, $id_animal)){
+                    $action = "remove";
+                }
+                else{
+                    $action = "add";
+                }
                 echo '<input type="text" name="id_user" class="input hidden" value="'.$id_user.'">
                     <input type="text" name="id_animal" class="input hidden" value="'.$id_animal.'">
+                    <input type="text" name="action" class="input hidden" value="'.$action.'">
                 ';
             }
             ?>
@@ -166,9 +161,27 @@
 						?>
                     </div>
                     <div>
-                        <button type="button" class="add_button" onClick="<?php if(isset($_SESSION['username'])) echo 'document.getElementById(\'frmAddFavorite\').submit();'; else echo 'openPopup()';?>">
-                            THÊM VÀO THƯ VIỆN
-                        </button>
+                        <?php
+                            if(!isset($_SESSION['username'])){
+                                echo '
+                                    <button type="button" class="add_button" onClick="openPopup();">
+                                        THÊM VÀO THƯ VIỆN
+                                    </button>
+                                ';
+                            }
+                            else{
+                                $buttonText = "";
+                                $id_animal = (int) $_GET['id_animal'];
+                                $id_user = getIDUserByUsername($_SESSION['username']);
+                                if(isFavorite($id_user,$id_animal)) $buttonText = "XOÁ KHỎI BỘ SƯU TẬP";
+                                else $buttonText = "THÊM VÀO BỘ SƯU TẬP";
+                                echo '
+                                <button type="button" class="add_button" onClick="document.getElementById(\'frmAddFavorite\').submit();">
+                                        '.$buttonText.'
+                                    </button>
+                                ';
+                            }
+                        ?>
                     </div>    
                     <div>
                         <button class="share_button">CHIA SẺ</button>
@@ -311,9 +324,9 @@
 		echo $alert;
 		unset($_SESSION['login_status']);
 	}
-    if(isset($_SESSION['addFavorite_status'])){
-		$alert = "<script>alert('".$_SESSION['addFavorite_status']."');</script>";
+    if(isset($_SESSION['actionFavorite_status'])){
+		$alert = "<script>alert('".$_SESSION['actionFavorite_status']."');</script>";
 		echo $alert;
-		unset($_SESSION['addFavorite_status']);
+		unset($_SESSION['actionFavorite_status']);
 	}
 ?>

@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	require_once('DBprocess.php');
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		login();	
@@ -156,5 +155,10 @@
 		$alert = "<script>alert('".$_SESSION['login_status']."');</script>";
 		echo $alert;
 		unset($_SESSION['login_status']);
+	}
+	if(isset($_SESSION['collection_status'])){
+		$alert = "<script>alert('".$_SESSION['collection_status']."');</script>";
+		echo $alert;
+		unset($_SESSION['collection_status']);
 	}
 ?>

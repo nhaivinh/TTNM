@@ -1,5 +1,10 @@
 <?php
-	
+	require_once("HTMLprocess.php");
+    session_start();
+    if(!isset($_SESSION['username'])){
+        $_SESSION['collection_status'] = "Hãy đăng nhập trước khi vào bộ sưu tập";
+        header("Location: main_page.php");
+    }
 ?>
 <html>
     <head>
@@ -43,64 +48,22 @@
             </form>
         </div>
         <div class="collection_content">
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-                <div class="heart"> 
-                    <img src="./img/nonfill_heart.png">
-                </div>
-            </div>
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
-
-            <div class="collection_content_items">
-                <img src="./img/tiger.jpg" alt="tiger">
-            </div>
+            <?php
+                $id_user = getIDUserByUsername($_SESSION['username']);
+                $favoriteList = getFavoriteList($id_user);
+                for($i=0;$i<count($favoriteList);$i++){
+                    $id_animal = $favoriteList[$i]['ID_Animal'];
+                    $link_pic = getLinkDefaultPicAnimalByID($id_animal);
+                    $ten_animal = getAnimalByID($id_animal)['Ten_TV'];
+                    $link_detail = "detail_page.php?id_animal=".$id_animal;
+                    echo '<div class="collection_content_items">
+                        <a href="'.$link_detail.'">
+                            <img src="'.$link_pic.'" alt="'.$ten_animal.'">
+                        </a>
+                    </div>';
+                }
+            ?>
+            
         </div>
     </body>
     <footer>

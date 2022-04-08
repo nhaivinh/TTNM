@@ -76,12 +76,14 @@
 		$query = "INSERT INTO `favoritelist_animal` (`ID_User`, `ID_Animal`) VALUES ('".$id_user."', '".$id_animal."');";
 		mysqli_query(connectDB(), $query);
 		closeDB($connect);
-		$_SESSION['addFavorite_success'] = "Thêm vào thư viện thành công";
+		$_SESSION['actionFavorite_status'] = "Thêm vào bộ sưu tập thành công";
 	}
 	function removeFavorite($id_user,$id_animal){
 		$connect = connectDB();
 		$query = "DELETE FROM `favoritelist_animal` WHERE ID_User='".$id_user."' AND ID_Animal='".$id_animal."'";
 		mysqli_query(connectDB(), $query);
+		closeDB($connect);
+		$_SESSION['actionFavorite_status'] = "Xoá khỏi bộ sưu tập thành công";
 	}
 	function isFavorite($id_user, $id_animal){
 		$connect = connectDB();
@@ -298,7 +300,6 @@
 			while($row = mysqli_fetch_array($result, 1)){
 				$data[] = $row;
 			}
-			
 		}
 	}
 ?>
