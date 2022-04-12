@@ -63,8 +63,28 @@
                     </div>';
                 }
             ?>
-            
+            <div class="collection_content_page">
+                <div class="page_choose">
+                    <ul>
+                        <li>
+                            <i class="arrow left"></i>
+                        </li>
+                        <li class="current">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                        <li>8</li>
+                        <li>
+                            <i class="arrow right"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>      
         </div>
+        
     </body>
     <footer>
         <div class="content_footer">
