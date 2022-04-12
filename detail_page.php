@@ -135,7 +135,49 @@
             ?>
             <div class="basic_info">
                 <div class="img_animal">
-                    <img src="<?php echo getLinkDefaultPicAnimalByID($_GET['id_animal']) ?>" alt="<?php echo $animal_detail['Ten_TV'] ?>">
+                    <!-- <img src="<?php echo getLinkDefaultPicAnimalByID($_GET['id_animal']) ?>" alt="<?php echo $animal_detail['Ten_TV'] ?>"> -->
+                    <div class="slideshow-container">
+
+                        <div class="mySlides fade">
+                            <img src="./img/animal/img/changxanh_1.jpg">
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img src="./img/animal/img/changxanh_2.jpg">
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img src="./img/animal/img/changxanh_3.jpg">
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img src="./img/animal/img/changxanh_4.jpg">
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img src="./img/animal/img/changxanh_5.jpg">
+                        </div>
+
+                    </div>
+                        <br>
+                        
+                        <div class="mini">
+                        <span class="mini_img" onclick="currentSlide(1)">
+                            <img src="./img/animal/img/changxanh_1.jpg">
+                        </span>
+                        <span class="mini_img" onclick="currentSlide(2)">
+                            <img src="./img/animal/img/changxanh_2.jpg">
+                        </span>
+                        <span class="mini_img" onclick="currentSlide(3)">
+                            <img src="./img/animal/img/changxanh_3.jpg">
+                        </span>
+                        <span class="mini_img" onclick="currentSlide(4)">
+                            <img src="./img/animal/img/changxanh_4.jpg">
+                        </span>
+                        <span class="mini_img" onclick="currentSlide(5)">
+                            <img src="./img/animal/img/changxanh_5.jpg">
+                        </span>
+                        </div>
                 </div>
 				
                 <div class="info_animal">
@@ -288,6 +330,25 @@
                 <img src="./img/video_tiger.png" alt="video_tiger">
             </div>
         </div>
+        <script>
+            let slideIndex = 1;
+            showSlides(slideIndex);
+
+            // Thumbnail image controls
+            function currentSlide(n) {
+            showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }            
+            slides[slideIndex-1].style.display = "block";
+            }
+        </script>
     </body>
     <footer>
         <div class="content_footer">

@@ -6,6 +6,11 @@ body{
     background: #EEEEEE;
     padding: 0;
     margin: 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 footer{
     margin: 0;
@@ -152,7 +157,7 @@ input[type=submit]{
 .slide-wrapper {
     width: 7680px;
     -webkit-animation: slide 14s ease infinite;
-  }
+}
 .slide {
     float: left;
     height: 600px;

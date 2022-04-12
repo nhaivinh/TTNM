@@ -6,6 +6,11 @@ body{
     background: #EEEEEE;
     padding: 0;
     margin: 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 .logo{
     position: absolute;
@@ -110,23 +115,54 @@ body{
     left: 145px;
     top: 50px;
 }
-.img_animal img{
-    width: 950px;
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+.mySlides {
+    display: none;
+}
+.mySlides img{
+    width: 950px; 
     height: 533.49px;
+    border-radius: 5%;
+}
+.mini{
+    margin-top: 20px;
+    text-align:center;
+    height: 200px;
+    display: flex;
+    overflow-x: scroll;
+}
+.mini_img img{
+    padding-right: 10px;
+    width: 180px; 
+    height: 120px;
+    border-radius: 10%;
+    z-index: 1;
+}
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
 }
 .info_animal{
     position: absolute;
-    width: 950px;
+    width: 700px;
     height: 722.45px;
     top: 50px;
-    left: 950px;
+    left: 1100px;
 }
 .vie_animal_name{
     display: block;
     position: absolute;
     width: 600px;
     height: 117px;
-    left: 250px;
+    left: 50px;
     text-align: center;
     font-family: 'Roboto';
     font-style: normal;
@@ -142,7 +178,7 @@ body{
     width: 600px;
     height: 59px;
     top: 117px;
-    left: 250px;
+    left: 50px;
     text-align: center;
     font-family: 'Roboto';
     font-style: normal;
@@ -158,7 +194,7 @@ body{
     position: absolute;
     width: 550px;
     height: 118px;
-    left: 250px;
+    left: 80px;
     top: 300px;
     font-family: 'Roboto';
     font-style: normal;
@@ -176,7 +212,7 @@ body{
     position: absolute;
     width: 450px;
     height: 100px;
-    left: 300px;
+    left: 130px;
     top: 450px;
 
     background: #2EC00E;
@@ -194,7 +230,7 @@ body{
     position: absolute;
     width: 450px;
     height: 100px;
-    left: 300px;
+    left: 130px;
     top: 557px;
 
     background: #2EC00E;
@@ -444,6 +480,11 @@ body{
     top: 100px;
     text-overflow: ellipsis;
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.ecological_info_content::-webkit-scrollbar {
+    display: none;
 }
 .ecological_info_content_item{
     font-family: 'Roboto';
@@ -509,6 +550,11 @@ body{
     top: 150px;
     text-overflow: ellipsis;
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.morphological_info_content::-webkit-scrollbar {
+    display: none;
 }
 .morphological_info_content_item{
     font-family: 'Roboto';

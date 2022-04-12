@@ -6,6 +6,11 @@ body{
     background: #EEEEEE;
     padding: 0;
     margin: 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 footer{
     margin: 0;
@@ -261,6 +266,11 @@ input[type=submit]{
     padding-top: 50px;
     text-overflow: ellipsis;
     overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+.result_search_items_content::-webkit-scrollbar {
+    display: none;
 }
 .result_search_items_content_texts{
     font-family: 'Roboto';
