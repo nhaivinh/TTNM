@@ -102,7 +102,14 @@
         </div>
         <div class="page_content">
             <div class="intro_header">
-                <img src="./img/header.png">
+                <!-- <img src="./img/header.png"> -->
+				<div id="slideshow">
+					<div class="slide-wrapper">
+						<div class="slide"><img src="./img/animal/img/changxanh_1.jpg"></div>
+						<div class="slide"><img src="./img/animal/img/changxanh_2.jpg"></div>
+						<div class="slide"><img src="./img/animal/img/changxanh_3.jpg"></div>
+					</div>
+				</div>
                 <span class="intro_header_text">TÌM HIỂU VỀ ĐỘNG VẬT NGAY !!!</span>
             </div>
             <form action="search_page.php" method="GET">

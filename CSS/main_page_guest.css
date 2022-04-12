@@ -140,9 +140,32 @@ input[type=submit]{
     position: absolute;
     width: 1820px;
     height: 600px;
-    left: 50px;
     top: 70px;
-
+}
+#slideshow {
+    overflow: hidden;
+    height: 600px;
+    width: 1920px;
+    margin: 0 auto;
+  }
+  
+.slide-wrapper {
+    width: 7680px;
+    -webkit-animation: slide 14s ease infinite;
+  }
+.slide {
+    float: left;
+    height: 600px;
+    width: 1920px;
+}
+  
+  
+@-webkit-keyframes slide {
+    20% {margin-left: 0px;}
+    30% {margin-left: -1920px;}
+    50% {margin-left: -1920px;}
+    60% {margin-left: -3840px;}
+    80% {margin-left: -3840px;}
 }
 .intro_header img{
     width: 100%;
