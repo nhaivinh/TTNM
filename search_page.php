@@ -12,7 +12,7 @@
 	}
 	else {
 		$page_number = (int) $_GET['page'];
-		if($page_number == 0){
+		if($page_number <= 0){
 			$_GET['page'] = '1';
 		}
 	}

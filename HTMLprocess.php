@@ -60,6 +60,17 @@
 		closeDB($connect);
 		return $data[0]['Link_Picture'];
 	}
+	function getLinkPicturesAnimalByID($id){
+		$connect = connectDB();
+		$query = "Select * from picture where id_animal='".$id."'";
+		$result = mysqli_query($connect, $query);
+		$data = array();
+		while($row = mysqli_fetch_array($result, 1)){
+			$data[] = $row;
+		}	
+		closeDB($connect);
+		return $data;
+	}
 	function getFavoriteList($id_user){
 		$connect = connectDB();
 		$query = "Select * from favoritelist_animal where ID_user='".$id_user."'";
@@ -71,12 +82,22 @@
 		closeDB($connect);
 		return $data;
 	}
+	function getCountFavoriteList($id_user){
+		$connect = connectDB();
+		$query = "Select count(*) as SL from favoritelist_animal where ID_user='".$id_user."'";
+		$result = mysqli_query($connect, $query);
+		$data = array();
+		while($row = mysqli_fetch_array($result, 1)){
+			$data[] = $row;
+		}
+		closeDB($connect);
+		return $data[0]['SL'];
+	}
 	function addToFavorite($id_user,$id_animal){
 		$connect = connectDB();
 		$query = "INSERT INTO `favoritelist_animal` (`ID_User`, `ID_Animal`) VALUES ('".$id_user."', '".$id_animal."');";
 		mysqli_query(connectDB(), $query);
 		closeDB($connect);
-		$_SESSION['actionFavorite_status'] = "Thêm vào bộ sưu tập thành công";
 	}
 	function removeFavorite($id_user,$id_animal){
 		$connect = connectDB();
@@ -100,7 +121,6 @@
 
 	function setURLforSearchPage($search_key, $page){
 		$setURL = "./search_page.php?search_key=".$search_key."&page=".$page;
-
 		return $setURL;
 	}
 	function showSearchAnimal(){
@@ -120,7 +140,7 @@
 
 			echo '<div class="result_search">';
 			for($i=$cur_page*4-4;$i<$cur_page*4;$i++){
-				if($i != $total_animal){
+				if($i < $total_animal){
 					$cur_id_animal = $data[$i]['ID_Animal'];
 					$link_detailpage = "detail_page.php?id_animal=".$cur_id_animal;
 					$link_pic = getLinkDefaultPicAnimalByID($cur_id_animal);
@@ -219,33 +239,44 @@
 				echo '<script type="text/javascript">choosePage('.$cur_page.');</script>';
 			}
 			else if($cur_page > $total_page-2){
-				echo '<a href="'.setURLforSearchPage($search_key,$total_page-4).'">
-					<li class="pageitem" id="pageNumber'.($total_page-4).'">
-						'.($total_page-4).'
-					</li>
-				</a>';
-				
-				echo '<a href="'.setURLforSearchPage($search_key,$total_page-3).'">
-					<li class="pageitem" id="pageNumber'.($total_page-3).'">
-					'.($total_page-3).'
-					</li>
-				</a>';
-				echo '<a href="'.setURLforSearchPage($search_key,$total_page-2).'">
-					<li class="pageitem" id="pageNumber'.($total_page-2).'">
-					'.($total_page-2).'
-					</li>
-				</a>';	
-				echo '<a href="'.setURLforSearchPage($search_key,$total_page-1).'">
-					<li class="pageitem" id="pageNumber'.($total_page-1).'"> 
-					'.($total_page-1).'
-					</li>
-				</a>';
-				echo '<a href="'.setURLforSearchPage($search_key,$total_page).'">
-					<li class="pageitem" id="pageNumber'.$total_page.'">
-					'.$total_page.'
-					</li>
-				</a>';
-				echo '<script type="text/javascript">choosePage('.$cur_page.');</script>';
+				if($total_page > 4){
+					echo '<a href="'.setURLforSearchPage($search_key,$total_page-4).'">
+						<li class="pageitem" id="pageNumber'.($total_page-4).'">
+							'.($total_page-4).'
+						</li>
+					</a>';
+					
+					echo '<a href="'.setURLforSearchPage($search_key,$total_page-3).'">
+						<li class="pageitem" id="pageNumber'.($total_page-3).'">
+						'.($total_page-3).'
+						</li>
+					</a>';
+					echo '<a href="'.setURLforSearchPage($search_key,$total_page-2).'">
+						<li class="pageitem" id="pageNumber'.($total_page-2).'">
+						'.($total_page-2).'
+						</li>
+					</a>';	
+					echo '<a href="'.setURLforSearchPage($search_key,$total_page-1).'">
+						<li class="pageitem" id="pageNumber'.($total_page-1).'"> 
+						'.($total_page-1).'
+						</li>
+					</a>';
+					echo '<a href="'.setURLforSearchPage($search_key,$total_page).'">
+						<li class="pageitem" id="pageNumber'.$total_page.'">
+						'.$total_page.'
+						</li>
+					</a>';
+					echo '<script type="text/javascript">choosePage('.$cur_page.');</script>';
+				}
+				else{
+					for($i=1;$i<=$total_page;$i++){
+						echo '<a href="'.setURLforSearchPage($search_key,$i).'">
+							<li class="pageitem" id="pageNumber'.$i.'">
+								'.$i.'
+							</li>
+						</a>';
+					}
+				}
 			}
 			else{
 				echo '<a href="'.setURLforSearchPage($search_key,$cur_page-2).'">

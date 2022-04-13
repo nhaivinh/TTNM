@@ -137,47 +137,28 @@
                 <div class="img_animal">
                     <!-- <img src="<?php echo getLinkDefaultPicAnimalByID($_GET['id_animal']) ?>" alt="<?php echo $animal_detail['Ten_TV'] ?>"> -->
                     <div class="slideshow-container">
-
-                        <div class="mySlides fade">
-                            <img src="./img/animal/img/changxanh_1.jpg">
-                        </div>
-
-                        <div class="mySlides fade">
-                            <img src="./img/animal/img/changxanh_2.jpg">
-                        </div>
-
-                        <div class="mySlides fade">
-                            <img src="./img/animal/img/changxanh_3.jpg">
-                        </div>
-
-                        <div class="mySlides fade">
-                            <img src="./img/animal/img/changxanh_4.jpg">
-                        </div>
-
-                        <div class="mySlides fade">
-                            <img src="./img/animal/img/changxanh_5.jpg">
-                        </div>
-
+                        <?php
+                            $id_animal = $_GET['id_animal'];
+                            $data = getLinkPicturesAnimalByID($id_animal);
+                            for($i=0;$i<count($data);$i++){
+                                echo '<div class="mySlides fade">
+                                    <img src="'.$data[$i]["Link_Picture"].'">
+                                </div>';
+                            }
+                        ?>
                     </div>
-                        <br>
-                        
-                        <div class="mini">
-                        <span class="mini_img" onclick="currentSlide(1)">
-                            <img src="./img/animal/img/changxanh_1.jpg">
-                        </span>
-                        <span class="mini_img" onclick="currentSlide(2)">
-                            <img src="./img/animal/img/changxanh_2.jpg">
-                        </span>
-                        <span class="mini_img" onclick="currentSlide(3)">
-                            <img src="./img/animal/img/changxanh_3.jpg">
-                        </span>
-                        <span class="mini_img" onclick="currentSlide(4)">
-                            <img src="./img/animal/img/changxanh_4.jpg">
-                        </span>
-                        <span class="mini_img" onclick="currentSlide(5)">
-                            <img src="./img/animal/img/changxanh_5.jpg">
-                        </span>
-                        </div>
+                    <br>
+                    <div class="mini">
+                        <?php
+                            $id_animal = $_GET['id_animal'];
+                            $data = getLinkPicturesAnimalByID($id_animal);
+                            for($i=0;$i<count($data);$i++){
+                                echo '<span class="mini_img" onclick="currentSlide('.($i+1).')">
+                                    <img src="'.$data[$i]["Link_Picture"].'">
+                                </span>';
+                            }
+                        ?>
+                    </div>
                 </div>
 				
                 <div class="info_animal">

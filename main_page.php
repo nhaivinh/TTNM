@@ -1,5 +1,6 @@
 <?php
 	require_once('DBprocess.php');
+	require_once("HTMLprocess.php");
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		login();	
 	}
@@ -105,9 +106,19 @@
                 <!-- <img src="./img/header.png"> -->
 				<div id="slideshow">
 					<div class="slide-wrapper">
-						<div class="slide"><img src="./img/animal/img/changxanh_1.jpg"></div>
-						<div class="slide"><img src="./img/animal/img/changxanh_2.jpg"></div>
-						<div class="slide"><img src="./img/animal/img/changxanh_3.jpg"></div>
+						<?php
+							$maxID = getMAXIDAnimal();
+							$randomIndex = 0;
+							while($randomIndex == 0 || $randomIndex == 15){
+								$randomIndex = rand(1, $maxID);
+							}
+							echo '<a href="detail_page.php?id_animal='.$randomIndex.'">';
+							$data = getLinkPicturesAnimalByID($randomIndex);
+							for($i=0;$i<count($data);$i++){
+								echo '<div class="slide"><img src="'.$data[$i]['Link_Picture'].'"></div>';
+							}
+							echo '</a>';
+						?>
 					</div>
 				</div>
                 <span class="intro_header_text">TÌM HIỂU VỀ ĐỘNG VẬT NGAY !!!</span>
