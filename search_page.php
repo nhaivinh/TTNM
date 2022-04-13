@@ -1,8 +1,11 @@
 <?php
 	require_once('HTMLprocess.php');
 	require_once('DBprocess.php');
-	if(isset($_POST['username']) && isset($_POST['password'])){
+	if(isset($_POST['username']) && isset($_POST['password']) && !isset($_POST['email']) && !isset($_POST['retypePass'])){
 		login();	
+	}
+	if(isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['retypePass'])){
+		register();	
 	}
 	if(!isset($_GET['search_key'])){
 		$_GET['search_key'] = ' ';
@@ -78,7 +81,7 @@
 			</div>
 			<div class="register-popup hidden" id="hidden-register">
 				<img src="./img/logo.png" alt="logo" class="register-logo">
-				<form action="register.php" method="POST" class="register-input-container">
+				<form action="" method="POST" class="register-input-container">
 					<input type="username" class="register-input" name="username" pattern="[a-zA-Z0-9]+$" placeholder="Tên người dùng">
 					<input type="email" class="register-input" name="email" placeholder="Email">
 					<input type="password" class="register-input" name="password" placeholder="Mật khẩu">

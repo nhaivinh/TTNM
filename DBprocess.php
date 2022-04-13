@@ -8,40 +8,43 @@
 			$password = $_POST['password'];
 			$repass = $_POST['retypePass'];
 			$email = $_POST['email'];
-			$query = "Select max(id_user) as max from user_account";
-			$result = mysqli_query($connect, $query);
-			$data= array();
-			while ($row = mysqli_fetch_array($result,1)){
-				$data[] = $row;
-			}
-			$new_id = $data[0]['max'] + 1;
-			$query = "Select * from user_account where username = '".$username."'";
-			$result = mysqli_query($connect, $query);
-			$data= array();
-			while ($row = mysqli_fetch_array($result,1)){
-				$data[] = $row;
-			}
-			if(count($data) == 0){
-				if($password == $repass){
-					$query = "Insert into user_account(id_user, username, password, privileges) values ('".$new_id."','".$username."','".$password."', 'User')";
-					mysqli_query(connectDB(), $query);
-					$query = "Insert into information(id_user, email) values ('".$new_id."','".$email."')";
-					mysqli_query(connectDB(), $query);
-					
-					$_SESSION['register_status'] = "Đăng ký thành công";
-					closeDB($connect);
-					header("Location: index.php");
+			if(!empty($username) && !empty($password) && !empty($repass) && !empty($email)){
+				$query = "Select max(id_user) as max from user_account";
+				$result = mysqli_query($connect, $query);
+				$data= array();
+				while ($row = mysqli_fetch_array($result,1)){
+					$data[] = $row;
+				}
+				$new_id = $data[0]['max'] + 1;
+				$query = "Select * from user_account where username = '".$username."'";
+				$result = mysqli_query($connect, $query);
+				$data= array();
+				while ($row = mysqli_fetch_array($result,1)){
+					$data[] = $row;
+				}
+				if(count($data) == 0){
+					if($password == $repass){
+						$query = "Insert into user_account(id_user, username, password, privileges) values ('".$new_id."','".$username."','".$password."', 'User')";
+						mysqli_query(connectDB(), $query);
+						$query = "Insert into information(id_user, email) values ('".$new_id."','".$email."')";
+						mysqli_query(connectDB(), $query);
+						
+						$_SESSION['register_status'] = "Đăng ký thành công";
+						closeDB($connect);
+					}
+					else{ 
+						$_SESSION['register_status'] = "Password và Repass không giống nhau";
+						closeDB($connect);
+					}
 				}
 				else{ 
-					$_SESSION['register_status'] = "Password và Repass không giống nhau";
+					$_SESSION['register_status'] = "Username đã tồn tại";
 					closeDB($connect);
-					header("Location: Register_form.php");
 				}
 			}
-			else{ 
-				$_SESSION['register_status'] = "Username đã tồn tại";
+			else{
+				$_SESSION['register_status'] = "Hãy điền đầy đủ thông tin";
 				closeDB($connect);
-				header("Location: Register_form.php");
 			}
 		}
 	}
