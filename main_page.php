@@ -94,12 +94,12 @@
 						echo '<button class="login" onclick="openPopup()">ĐĂNG NHẬP</button>';
 					}
 				?>
-                <form action="" method="POST">
+                <form action="search_page.php" method="GET">
                     <div class="input_search">
-                        <input type="search" name="search_input" placeholder="NHẬP GÌ ĐÓ">
+                        <input type="search" name="search_key" placeholder="NHẬP GÌ ĐÓ">
                     </div>                   
                     <div class="button_search">
-                        <input type="submit" name="search" value="TÌM KIẾM">
+                        <input type="submit" value="TÌM KIẾM">
                     </div> 
                 </form>
             </div>
@@ -147,14 +147,14 @@
             <div class="logo_footer">
                 <img src="./img/logo.png" alt="logo">
             </div>
-        <form action="" method="POST">
+        <form action="search_page.php" method="GET">
             <div class="search_bar_footer">
                 <div class="input_search_footer">
-                    <input type="search" name="search" placeholder="NHẬP GÌ ĐÓ">
+                    <input type="search" name="search_key" placeholder="NHẬP GÌ ĐÓ">
                 </div>                     
             </div>
             <div class="button_search_footer">
-                <input type="submit" name="search" value="TÌM KIẾM">
+                <input type="submit" value="TÌM KIẾM">
             </div> 
         </form>
         </div>

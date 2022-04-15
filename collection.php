@@ -9,6 +9,9 @@
         $_SESSION['collection_status'] = "Hãy đăng nhập trước khi vào bộ sưu tập";
         header("Location: main_page.php");
     }
+    if(!isset($_GET['search_key'])){
+		$_GET['search_key'] = ' ';
+	}
     if(!isset($_GET['page'])){
         $_GET['page'] = '1';
     }
@@ -18,6 +21,7 @@
             $_GET['page'] = '1';
         }
     }
+
 ?>
 <html>
     <head>
@@ -43,35 +47,36 @@
                 <a href="" class="aboutus">VỀ CHÚNG TÔI</a>
                 <a href="./collection.php" class="collection">BỘ SƯU TẬP</a>
                 <a href="./logout.php" class="logout">ĐĂNG XUẤT</a>
-                <form action="" method="POST">
+                <form action="search_page.php" method="GET">
                     <div class="input_search">
-                        <input type="search" name="search" placeholder="NHẬP GÌ ĐÓ">
+                        <input type="search" name="search_key" placeholder="NHẬP GÌ ĐÓ">
                     </div>                   
                     <div class="button_search">
-                        <input type="submit" name="search" value="TÌM KIẾM">
+                        <input type="submit" value="TÌM KIẾM">
                     </div> 
                 </form>
             </div>
         </div>
         <div class="search_content">
-            <form action="" method="POST">
+            <form action="" method="GET">
                 <div class="input_content_search">
-                    <input type="search" name="search_content_input" placeholder="NHẬP GÌ ĐÓ">
+                    <input type="search" name="search_key" placeholder="NHẬP GÌ ĐÓ">
                 </div>                   
                 <div class="content_search_button">
-                    <input type="submit" name="search_content" value="TÌM KIẾM">
+                    <input type="submit" value="TÌM KIẾM">
                 </div> 
                 <div class="extend_button">
-                    <input type="submit" name="extend" value="NÂNG CAO">
+                    <input type="submit" value="NÂNG CAO">
                 </div> 
             </form>
         </div>
         <div class="collection_content">
             <?php
+                $search_key = $_GET['search_key'];
                 $cur_page = $_GET['page'];
                 $id_user = getIDUserByUsername($_SESSION['username']);
-                $favoriteList = getFavoriteList($id_user);
-                $total_animal = getCountFavoriteList($id_user);
+                $favoriteList = getFavoriteList($id_user, $search_key);
+                $total_animal = count($favoriteList);
                 $total_page = ceil($total_animal/12);
                 for($i=$cur_page*12-12;$i<$cur_page*12;$i++){
                     if($i < $total_animal){
@@ -194,6 +199,7 @@
                                             </li>
                                         </a>';
                                     }
+                                    echo '<script type="text/javascript">choosePage('.$cur_page.');</script>';
                                 }
                             }
                             else{
@@ -245,14 +251,14 @@
             <div class="logo_footer">
                 <img src="./img/logo.png" alt="logo">
             </div>
-        <form action="" method="POST">
+        <form action="search_page.php" method="GET">
             <div class="search_bar_footer">
                 <div class="input_search_footer">
-                    <input type="search" name="search" placeholder="NHẬP GÌ ĐÓ">
+                    <input type="search" name="search_key" placeholder="NHẬP GÌ ĐÓ">
                 </div>                     
             </div>
             <div class="button_search_footer">
-                <input type="submit" name="search" value="TÌM KIẾM">
+                <input type="submit" value="TÌM KIẾM">
             </div> 
         </form>
         </div>

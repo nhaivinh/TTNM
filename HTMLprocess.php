@@ -71,9 +71,10 @@
 		closeDB($connect);
 		return $data;
 	}
-	function getFavoriteList($id_user){
+	function getFavoriteList($id_user, $search_key){
 		$connect = connectDB();
-		$query = "Select * from favoritelist_animal where ID_user='".$id_user."'";
+		$query = "SELECT * FROM `favoritelist_animal` join animal on favoritelist_animal.ID_Animal = animal.ID_Animal 
+			WHERE ID_User='".$id_user."' and Ten_KH like '%".$search_key."%' or Ten_TV like '%".$search_key."%' or Ten_Local like '".$search_key."'";
 		$result = mysqli_query($connect, $query);
 		$data = array();
 		while($row = mysqli_fetch_array($result, 1)){
@@ -81,17 +82,6 @@
 		}
 		closeDB($connect);
 		return $data;
-	}
-	function getCountFavoriteList($id_user){
-		$connect = connectDB();
-		$query = "Select count(*) as SL from favoritelist_animal where ID_user='".$id_user."'";
-		$result = mysqli_query($connect, $query);
-		$data = array();
-		while($row = mysqli_fetch_array($result, 1)){
-			$data[] = $row;
-		}
-		closeDB($connect);
-		return $data[0]['SL'];
 	}
 	function addToFavorite($id_user,$id_animal){
 		$connect = connectDB();
