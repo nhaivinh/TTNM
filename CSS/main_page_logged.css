@@ -132,7 +132,7 @@ input[type=search]{
 }
 input[type=submit]{
     background: #2EC00E;
-    padding: 15px 32px;
+    padding: 15px 0px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

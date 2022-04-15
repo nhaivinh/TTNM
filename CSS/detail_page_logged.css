@@ -143,10 +143,15 @@ body::-webkit-scrollbar {
 }
 .mini{
     margin-top: 20px;
-    text-align:center;
+    justify-content: center;
     height: 200px;
     display: flex;
     overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.mini::-webkit-scrollbar {
+    display: none;
 }
 .mini_img img{
     padding-right: 10px;
