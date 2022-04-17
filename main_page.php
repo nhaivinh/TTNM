@@ -99,51 +99,81 @@
 		<div class="advance-search-container hidden" id="hidden-popup-advance-search">
 			<div class="advance-search-popup hidden" id="hidden-advance-search">
 				<img src="./img/logo.png" alt="logo" class="advance-search-logo">
-				<form action="" method="POST">
+				<form action="search_page.php" method="GET">
 					<div class="advance-search-input-container">
 					<div class="regnum">
 						<div class="select-dropdown">
 							<select name="regnum" id="regnum">
-								<option value="demo">Giới</option>
+								<option value="">Tất cả</option>
+								<?php
+									$gioi = getGroupRowAtAnimalByRowName("Gioi");
+									for($i=0;$i<count($gioi);$i++){
+										echo '<option value="'.$gioi[$i]['Gioi'].'">'.$gioi[$i]['Gioi'].'</option>';
+									}
+								?>
 							</select>
 						</div> 
 					</div> 
 					<div class="phylum">               
 						<div class="select-dropdown">
 							<select name="phylum" id="phylum">
-								<option value="demo">Ngành</option>
+								<option value="">Tất cả</option>
+								<?php
+									$nganh = getGroupRowAtAnimalByRowName("Nganh");
+									for($i=0;$i<count($nganh);$i++){
+										echo '<option value="'.$nganh[$i]['Nganh'].'">'.$nganh[$i]['Nganh'].'</option>';
+									}
+								?>
 							</select>
 						</div>
 					</div> 
 					<div class="class">
 						<div class="select-dropdown">
 							<select name="class" id="class">
-								<option value="demo">Lớp</option>
+								<option value="">Tất cả</option>
+								<?php
+									$lop = getGroupRowAtAnimalByRowName("Lop");
+									for($i=0;$i<count($lop);$i++){
+										echo '<option value="'.$lop[$i]['Lop'].'">'.$lop[$i]['Lop'].'</option>';
+									}
+								?>
 							</select>
 						</div> 
 					</div>  
 					<div class="ordo">
 						<div class="select-dropdown">
 							<select name="ordo" id="ordo">
-								<option value="demo">Bộ</option>
+								<option value="">Tất cả</option>
+								<?php
+									$bo = getGroupRowAtAnimalByRowName("Bo");
+									for($i=0;$i<count($bo);$i++){
+										echo '<option value="'.$bo[$i]['Bo'].'">'.$bo[$i]['Bo'].'</option>';
+									}
+								?>
 							</select>
 						</div>
 					</div> 
 					<div class="familia">
 						<div class="select-dropdown">
 							<select name="familia" id="familia">
-								<option value="demo">Họ</option>
+								<option value="">Tất cả</option>
+								<?php
+									$ho = getGroupRowAtAnimalByRowName("Ho");
+									for($i=0;$i<count($ho);$i++){
+										echo '<option value="'.$ho[$i]['Ho'].'">'.$ho[$i]['Ho'].'</option>';
+									}
+								?>
 							</select>
 						</div>  
 					</div>                                     
 					<div class="input_advance_search">
-						<input type="search" name="input_search" placeholder="Tìm kiếm ....">
+						<input type="search" name="search_key" placeholder="Tìm kiếm ....">
 					</div>                   
 					<div class="button_advance_search">
-						<input type="submit" name="button_search" value="Áp Dụng">
+						<input type="submit" value="Áp Dụng">
 					</div>  
 					<div class="button_cancel">
-						<input type="submit" name="cancel" value="Huỷ">
+						<input type="button" onClick="closeAdvanceSearch()" value="Huỷ">
 					</div>           
 					</div>      
 				</form>
@@ -206,9 +236,9 @@
                     <input type="submit" value="TÌM KIẾM">
                 </div> 
 			</form>
-                <div class="extend_button">
-					<button class="extend_button_button" onclick="openPopupAdvanceSearch()">NÂNG CAO</button>
-                </div>            
+            <div class="extend_button">
+				<button class="extend_button_button" onclick="openPopupAdvanceSearch()">NÂNG CAO</button>
+            </div>            
             <div class="intro_video">
                 <img src="./img/video.png">
             </div>

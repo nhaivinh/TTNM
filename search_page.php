@@ -10,6 +10,21 @@
 	if(!isset($_GET['search_key'])){
 		$_GET['search_key'] = ' ';
 	}
+	if(!isset($_GET['regnum'])){
+		$_GET['regnum'] = '';
+	}
+	if(!isset($_GET['phylum'])){
+		$_GET['phylum'] = '';
+	}
+	if(!isset($_GET['class'])){
+		$_GET['class'] = '';
+	}
+	if(!isset($_GET['ordo'])){
+		$_GET['ordo'] = '';
+	}
+	if(!isset($_GET['familia'])){
+		$_GET['familia'] = '';
+	}
 	if(!isset($_GET['page']) ){
 		$_GET['page'] = '1';
 	}
@@ -52,6 +67,15 @@
 				document.getElementById("hidden-register").classList.add("hidden");
 			}
 
+			function openPopupAdvanceSearch(){
+				document.getElementById("hidden-popup-advance-search").classList.remove("hidden");
+				document.getElementById("hidden-advance-search").classList.remove("hidden");
+			}
+			
+			function openAdvanceSearch(){
+				document.getElementById("hidden-advance-search").classList.remove("hidden");
+			}
+
 			function closeLogin(){
 				document.getElementById("hidden-popup").classList.add("hidden");
 				document.getElementById("hidden-login").classList.add("hidden");
@@ -60,6 +84,11 @@
 			function closeRegister(){
 				document.getElementById("hidden-popup").classList.add("hidden");
 				document.getElementById("hidden-register").classList.add("hidden");
+			}
+
+			function closeAdvanceSearch(){
+				document.getElementById("hidden-popup-advance-search").classList.add("hidden");
+				document.getElementById("hidden-advance-search").classList.add("hidden");
 			}
 
 			function choosePage(index){
@@ -91,6 +120,90 @@
 				<p class="register-no-account">Bạn đã có tài khoản? <button onclick="openLogin()">Đăng nhập</button></p>
 				<button class="exit-btn" onClick="closeRegister()"><img src="./img/x_button.png" alt="exit-btn" style="width: 100px;"></button>
 			</div>
+		</div>
+		<div class="advance-search-container hidden" id="hidden-popup-advance-search">
+			<div class="advance-search-popup hidden" id="hidden-advance-search">
+				<img src="./img/logo.png" alt="logo" class="advance-search-logo">
+				<form action="" method="GET">
+					<div class="advance-search-input-container">
+					<div class="regnum">
+						<div class="select-dropdown">
+							<select name="regnum" id="regnum">
+								<option value="">Tất cả</option>
+								<?php
+									$gioi = getGroupRowAtAnimalByRowName("Gioi");
+									for($i=0;$i<count($gioi);$i++){
+										echo '<option value="'.$gioi[$i]['Gioi'].'">'.$gioi[$i]['Gioi'].'</option>';
+									}
+								?>
+							</select>
+						</div> 
+					</div> 
+					<div class="phylum">               
+						<div class="select-dropdown">
+							<select name="phylum" id="phylum">
+								<option value="">Tất cả</option>
+								<?php
+									$nganh = getGroupRowAtAnimalByRowName("Nganh");
+									for($i=0;$i<count($nganh);$i++){
+										echo '<option value="'.$nganh[$i]['Nganh'].'">'.$nganh[$i]['Nganh'].'</option>';
+									}
+								?>
+							</select>
+						</div>
+					</div> 
+					<div class="class">
+						<div class="select-dropdown">
+							<select name="class" id="class">
+								<option value="">Tất cả</option>
+								<?php
+									$lop = getGroupRowAtAnimalByRowName("Lop");
+									for($i=0;$i<count($lop);$i++){
+										echo '<option value="'.$lop[$i]['Lop'].'">'.$lop[$i]['Lop'].'</option>';
+									}
+								?>
+							</select>
+						</div> 
+					</div>  
+					<div class="ordo">
+						<div class="select-dropdown">
+							<select name="ordo" id="ordo">
+								<option value="">Tất cả</option>
+								<?php
+									$bo = getGroupRowAtAnimalByRowName("Bo");
+									for($i=0;$i<count($bo);$i++){
+										echo '<option value="'.$bo[$i]['Bo'].'">'.$bo[$i]['Bo'].'</option>';
+									}
+								?>
+							</select>
+						</div>
+					</div> 
+					<div class="familia">
+						<div class="select-dropdown">
+							<select name="familia" id="familia">
+								<option value="">Tất cả</option>
+								<?php
+									$ho = getGroupRowAtAnimalByRowName("Ho");
+									for($i=0;$i<count($ho);$i++){
+										echo '<option value="'.$ho[$i]['Ho'].'">'.$ho[$i]['Ho'].'</option>';
+									}
+								?>
+							</select>
+						</div>  
+					</div>                                     
+					<div class="input_advance_search">
+						<input type="search" name="search_key" placeholder="Tìm kiếm ....">
+					</div>                   
+					<div class="button_advance_search">
+						<input type="submit" value="Áp Dụng">
+					</div>  
+					<div class="button_cancel">
+						<input type="button" onClick="closeAdvanceSearch()" value="Huỷ">
+					</div>           
+					</div>      
+				</form>
+				<button class="exit-btn-advance-search" onClick="closeAdvanceSearch()"><img src="./img/x_button.png" alt="exit-btn" style="width: 100px;"></button>
+			</div>	
 		</div>
         <div class="navigator_bar">
             <div class="navigator_bar_item">

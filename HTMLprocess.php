@@ -113,13 +113,30 @@
 		$setURL = "./search_page.php?search_key=".$search_key."&page=".$page;
 		return $setURL;
 	}
+	function getGroupRowAtAnimalByRowName($rowName){
+		$connect = connectDB();
+		$query = "select ".$rowName." from animal group by ".$rowName;
+		$result = mysqli_query($connect, $query);
+		$data = array();
+		while($row = mysqli_fetch_array($result, 1)){
+			$data[] = $row;
+		}
+		closeDB($connect);
+		return $data;
+	}
 	function showSearchAnimal(){
 		if(isset($_GET['search_key']) && isset($_GET['page'])){
 			$connect = connectDB();
 			$search_key = $_GET['search_key'];			
+			$gioi = $_GET['regnum'];
+			$nganh = $_GET['phylum'];
+			$lop = $_GET['class'];
+			$bo = $_GET['ordo'];
+			$ho = $_GET['familia'];
 			$cur_page = $_GET['page'];	
 
-			$query = "Select * from animal where ten_TV like '%".$search_key."%' or ten_KH like '%".$search_key."%' or ten_local like '%".$search_key."%'";
+			$query = "Select * from animal where ten_TV like '%".$search_key."%' or ten_KH like '%".$search_key."%' or ten_local like '%".$search_key."%'
+				and gioi like '%".$gioi."%' and nganh like '%".$nganh."%' and lop like '%".$lop."%' and bo like '%".$bo."%' and ho like '%".$ho."%'";
 			$result = mysqli_query($connect, $query);
 			$total_animal = mysqli_num_rows($result);
             $total_page = ceil($total_animal/4);
