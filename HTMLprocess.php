@@ -109,8 +109,9 @@
 		else return false;
 	}
 
-	function setURLforSearchPage($search_key, $page){
-		$setURL = "./search_page.php?search_key=".$search_key."&page=".$page;
+	function setURLforSearchPage($search_key, $regnum, $phylum, $class, $ordo, $familia, $page){
+		$setURL = "./search_page.php?search_key=".$search_key."&regnum=".$regnum."&phylum=".$phylum."
+			&class=".$class."&ordo=".$ordo."&familia=".$familia."&page=".$page;
 		return $setURL;
 	}
 	function getGroupRowAtAnimalByRowName($rowName){
@@ -135,8 +136,8 @@
 			$ho = $_GET['familia'];
 			$cur_page = $_GET['page'];	
 
-			$query = "Select * from animal where ten_TV like '%".$search_key."%' or ten_KH like '%".$search_key."%' or ten_local like '%".$search_key."%'
-				and gioi like '%".$gioi."%' and nganh like '%".$nganh."%' and lop like '%".$lop."%' and bo like '%".$bo."%' and ho like '%".$ho."%'";
+			$query = "Select * from (Select * from animal WHERE ten_TV like '%".$search_key."%' or ten_KH like '%".$search_key."%' or ten_local like '%".$search_key."%') as animal 
+			where gioi like '%".$gioi."%' and nganh like '%".$nganh."%' and lop like '%".$lop."%' and bo like '%".$bo."%' and ho like '%".$ho."%'";
 			$result = mysqli_query($connect, $query);
 			$total_animal = mysqli_num_rows($result);
             $total_page = ceil($total_animal/4);
@@ -199,7 +200,7 @@
 					<ul>';
 			if($total_page > 1){
 				echo '
-							<a href="'.setURLforSearchPage($search_key,$page_left).'">
+							<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$page_left).'">
 								<li>
 									<i class="arrow left"></i>
 								</li>
@@ -209,35 +210,36 @@
 			if($cur_page < 3){
 				if($total_page < 5){
 					for($i=1;$i<=$total_page;$i++){
-						echo '<a href="'.setURLforSearchPage($search_key,$i).'">
+						echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$i).'">
 							<li class="pageitem" id="pageNumber'.$i.'">
 								'.$i.'
 							</li>
 						</a>';
 					}
+					echo '<script type="text/javascript">choosePage('.$cur_page.');</script>';
 				}
 				else{
-					echo '<a href="'.setURLforSearchPage($search_key,1).'">
+					echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,1).'">
 						<li class="pageitem" id="pageNumber1">
 							1
 						</li>
 					</a>';
-					echo '<a href="'.setURLforSearchPage($search_key,2).'">
+					echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,2).'">
 						<li class="pageitem" id="pageNumber2">
 							2
 						</li>
 					</a>';
-					echo '<a href="'.setURLforSearchPage($search_key,3).'">
+					echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,3).'">
 						<li class="pageitem" id="pageNumber3">
 							3
 						</li>
 					</a>';	
-					echo '<a href="'.setURLforSearchPage($search_key,4).'">
+					echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,4).'">
 						<li class="pageitem" id="pageNumber4">
 							4
 						</li>
 					</a>';
-					echo '<a href="'.setURLforSearchPage($search_key,5).'">
+					echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,5).'">
 						<li class="pageitem" id="pageNumber5">
 							5
 						</li>
@@ -247,28 +249,28 @@
 			}
 			else if($cur_page > $total_page-2){
 				if($total_page > 4){
-					echo '<a href="'.setURLforSearchPage($search_key,$total_page-4).'">
+					echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$total_page-4).'">
 						<li class="pageitem" id="pageNumber'.($total_page-4).'">
 							'.($total_page-4).'
 						</li>
 					</a>';
 					
-					echo '<a href="'.setURLforSearchPage($search_key,$total_page-3).'">
+					echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$total_page-3).'">
 						<li class="pageitem" id="pageNumber'.($total_page-3).'">
 						'.($total_page-3).'
 						</li>
 					</a>';
-					echo '<a href="'.setURLforSearchPage($search_key,$total_page-2).'">
+					echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$total_page-2).'">
 						<li class="pageitem" id="pageNumber'.($total_page-2).'">
 						'.($total_page-2).'
 						</li>
 					</a>';	
-					echo '<a href="'.setURLforSearchPage($search_key,$total_page-1).'">
+					echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$total_page-1).'">
 						<li class="pageitem" id="pageNumber'.($total_page-1).'"> 
 						'.($total_page-1).'
 						</li>
 					</a>';
-					echo '<a href="'.setURLforSearchPage($search_key,$total_page).'">
+					echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$total_page).'">
 						<li class="pageitem" id="pageNumber'.$total_page.'">
 						'.$total_page.'
 						</li>
@@ -277,36 +279,37 @@
 				}
 				else{
 					for($i=1;$i<=$total_page;$i++){
-						echo '<a href="'.setURLforSearchPage($search_key,$i).'">
+						echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$i).'">
 							<li class="pageitem" id="pageNumber'.$i.'">
 								'.$i.'
 							</li>
 						</a>';
 					}
+					echo '<script type="text/javascript">choosePage('.$cur_page.');</script>';
 				}
 			}
 			else{
-				echo '<a href="'.setURLforSearchPage($search_key,$cur_page-2).'">
+				echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$cur_page-2).'">
 					<li class="pageitem" id="pageNumber'.($cur_page-2).'">
 						'.($cur_page-2).'
 					</li>
 				</a>';
-				echo '<a href="'.setURLforSearchPage($search_key,$cur_page-1).'">
+				echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$cur_page-1).'">
 					<li class="pageitem" id="pageNumber'.($cur_page-1).'">
 					'.($cur_page-1).'
 					</li>
 				</a>';
-				echo '<a href="'.setURLforSearchPage($search_key,$cur_page).'">
+				echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$cur_page).'">
 					<li class="pageitem" id="pageNumber'.$cur_page.'">
 					'.$cur_page.'
 					</li>
 				</a>';	
-				echo '<a href="'.setURLforSearchPage($search_key,$cur_page+1).'">
+				echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$cur_page+1).'">
 					<li class="pageitem" id="pageNumber'.($cur_page+1).'">
 					'.($cur_page+1).'
 					</li>
 				</a>';
-				echo '<a href="'.setURLforSearchPage($search_key,$cur_page+2).'">
+				echo '<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$cur_page+2).'">
 					<li class="pageitem" id="pageNumber'.($cur_page+2).'">
 					'.($cur_page+2).'
 					</li>
@@ -315,7 +318,7 @@
 			}
 			if($total_page > 1){
 				echo '
-						<a href="'.setURLforSearchPage($search_key,$page_right).'">
+						<a href="'.setURLforSearchPage($search_key,$gioi,$nganh,$lop,$bo,$ho,$page_right).'">
 							<li>
 								<i class="arrow right"></i>
 							</li>
