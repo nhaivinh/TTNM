@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 07, 2022 lúc 02:18 PM
+-- Thời gian đã tạo: Th4 17, 2022 lúc 09:16 AM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 8.1.2
 
@@ -256,7 +256,29 @@ CREATE TABLE `favoritelist_animal` (
 INSERT INTO `favoritelist_animal` (`ID_User`, `ID_Animal`) VALUES
 (1, 1),
 (1, 2),
-(1, 3);
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
+(1, 13),
+(1, 14),
+(1, 15),
+(1, 16),
+(1, 17),
+(1, 18),
+(1, 19),
+(1, 20),
+(1, 21),
+(1, 22),
+(1, 23),
+(1, 24),
+(1, 25);
 
 -- --------------------------------------------------------
 
@@ -271,6 +293,14 @@ CREATE TABLE `information` (
   `Ngaysinh_User` int(11) DEFAULT NULL,
   `Ngaytao_User` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `information`
+--
+
+INSERT INTO `information` (`ID_User`, `Email`, `Hoten_User`, `Ngaysinh_User`, `Ngaytao_User`) VALUES
+(2, 'minhluu2608@gmail.com', NULL, NULL, 0),
+(3, 'minhluu2608@gmail.com', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -418,7 +448,9 @@ CREATE TABLE `user_account` (
 --
 
 INSERT INTO `user_account` (`ID_User`, `Username`, `Password`, `Privileges`, `PublicStatus`, `BANStatus`) VALUES
-(1, 'DemoUser', 'demo', 'Admin', 0, 0);
+(1, 'DemoUser', 'demo', 'Admin', 0, 0),
+(2, 'GuestUser', '2608', 'User', 0, 0),
+(3, 'minhluu2608', '2608', 'User', 0, 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -503,7 +535,7 @@ ALTER TABLE `comment_cd`
 -- AUTO_INCREMENT cho bảng `user_account`
 --
 ALTER TABLE `user_account`
-  MODIFY `ID_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

@@ -100,53 +100,53 @@
 			<div class="advance-search-popup hidden" id="hidden-advance-search">
 				<img src="./img/logo.png" alt="logo" class="advance-search-logo">
 				<form action="" method="POST">
-				<div class="advance-search-input-container">
-				<div class="regnum">
-                    <div class="select-dropdown">
-                        <select name="regnum" id="regnum">
-                            <option value="demo">Giới</option>
-                        </select>
-                    </div> 
-                </div> 
-                <div class="phylum">               
-                    <div class="select-dropdown">
-                        <select name="phylum" id="phylum">
-                            <option value="demo">Ngành</option>
-                        </select>
-                    </div>
-                </div> 
-                <div class="class">
-                    <div class="select-dropdown">
-                        <select name="class" id="class">
-                            <option value="demo">Lớp</option>
-                        </select>
-                    </div> 
-                </div>  
-                <div class="ordo">
-                    <div class="select-dropdown">
-                        <select name="ordo" id="ordo">
-                            <option value="demo">Bộ</option>
-                        </select>
-                    </div>
-                </div> 
-                <div class="familia">
-                    <div class="select-dropdown">
-                        <select name="familia" id="familia">
-                            <option value="demo">Họ</option>
-                        </select>
-                    </div>  
-                </div>                                     
-                <div class="input_advance_search">
-                    <input type="search" name="input_search" placeholder="Tìm kiếm ....">
-                </div>                   
-                <div class="button_advance_search">
-                    <input type="submit" name="button_search" value="Áp Dụng">
-                </div>  
-                <div class="button_cancel">
-                    <input type="submit" name="cancel" value="Huỷ">
-                </div>           
-				</div>      
-            </form>
+					<div class="advance-search-input-container">
+					<div class="regnum">
+						<div class="select-dropdown">
+							<select name="regnum" id="regnum">
+								<option value="demo">Giới</option>
+							</select>
+						</div> 
+					</div> 
+					<div class="phylum">               
+						<div class="select-dropdown">
+							<select name="phylum" id="phylum">
+								<option value="demo">Ngành</option>
+							</select>
+						</div>
+					</div> 
+					<div class="class">
+						<div class="select-dropdown">
+							<select name="class" id="class">
+								<option value="demo">Lớp</option>
+							</select>
+						</div> 
+					</div>  
+					<div class="ordo">
+						<div class="select-dropdown">
+							<select name="ordo" id="ordo">
+								<option value="demo">Bộ</option>
+							</select>
+						</div>
+					</div> 
+					<div class="familia">
+						<div class="select-dropdown">
+							<select name="familia" id="familia">
+								<option value="demo">Họ</option>
+							</select>
+						</div>  
+					</div>                                     
+					<div class="input_advance_search">
+						<input type="search" name="input_search" placeholder="Tìm kiếm ....">
+					</div>                   
+					<div class="button_advance_search">
+						<input type="submit" name="button_search" value="Áp Dụng">
+					</div>  
+					<div class="button_cancel">
+						<input type="submit" name="cancel" value="Huỷ">
+					</div>           
+					</div>      
+				</form>
 				<button class="exit-btn-advance-search" onClick="closeAdvanceSearch()"><img src="./img/x_button.png" alt="exit-btn" style="width: 100px;"></button>
 			</div>	
 		</div>
