@@ -37,9 +37,10 @@
 ?>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8">		
 		<link rel="stylesheet" href="./CSS/login.CSS">
 		<link rel="stylesheet" href="./CSS/register.css">
+		<link rel="stylesheet" href="./CSS/advance_search.css">
 		<?php
 			if(isset($_SESSION['username'])){
 				echo '<link rel="StyleSheet" href="./CSS/search_page_logged.css">';
@@ -255,7 +256,7 @@
                     <input type="submit" value="TÌM KIẾM">
                 </div> 
                 <div class="extend_button">
-                    <input type="submit"value="NÂNG CAO">
+					<button class="extend_button_button" onclick="openPopupAdvanceSearch()">NÂNG CAO</button>
                 </div> 
             </form>
 			<?php

@@ -210,6 +210,22 @@ input[type=submit]{
     left: 1000px;
     top: 205px;
 }
+.extend_button_button{
+    text-transform: uppercase;
+    background: #2EC00E;
+    padding: 15px 0px;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Roboto';
+    font-style: normal;
+    border-radius: 10px;
+    color: #FFFFFF;
+    border: none;
+}
 .result_search{
     display: block;
     position: absolute;
