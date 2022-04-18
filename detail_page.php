@@ -210,7 +210,7 @@
                         ?>
                     </div>    
                     <div>
-                        <button class="share_button">CHIA SẺ</button>
+                        <button type="button" class="share_button">CHIA SẺ</button>
                     </div> 
                 </div>
             </div>
