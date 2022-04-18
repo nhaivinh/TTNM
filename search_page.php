@@ -256,7 +256,7 @@
                     <input type="submit" value="TÌM KIẾM">
                 </div> 
                 <div class="extend_button">
-					<button class="extend_button_button" onclick="openPopupAdvanceSearch()">NÂNG CAO</button>
+					<button type="button" class="extend_button_button" onclick="openPopupAdvanceSearch()">NÂNG CAO</button>
                 </div> 
             </form>
 			<?php
